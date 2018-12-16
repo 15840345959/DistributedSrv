@@ -1,0 +1,2 @@
+webpackJsonp([6],{Nl6u:function(t,e){},p9vS:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var a={components:{v_tabbar_index:n("hAWG").a},data:function(){return{}},mounted:function(){}},r={render:function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"wrapper"},[e("div",[this._v("本页面为用户页面，要提现用户的订单信息")]),this._v(" "),e("v_tabbar_index")],1)},staticRenderFns:[]};var i=n("VU/8")(a,r,!1,function(t){n("Nl6u")},"data-v-4a3c8f05",null);e.default=i.exports}});
+//# sourceMappingURL=6.025e27ead01f4716c9f0.js.map

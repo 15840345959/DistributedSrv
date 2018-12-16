@@ -1,0 +1,9 @@
+/*improve text default*/
+.aui-text-default {
+    color: #999999 !important;
+}
+
+.directionn-right {
+    direction: rtl;
+}
+

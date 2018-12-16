@@ -1,0 +1,84 @@
+/*
+ * 页面基本样式
+ *
+ * By TerryQi  2017-10-19
+ */
+
+html, body {
+    line-height: 22px;
+    height: 100% !important;
+    background-color: #f1f1f1;
+}
+
+/*主色*/
+.main-bg {
+    background: #EA5858;
+}
+
+.main-color {
+    color: #EA5858;
+}
+
+/*字体相关*/
+
+.text-grey-EEE {
+    color: #EEEEEE;
+}
+
+.text-grey-CCC {
+    color: #CCCCCC;
+}
+
+.text-grey-AAA {
+    color: #AAAAAA;
+}
+
+.text-grey-999 {
+    color: #999988;
+}
+
+/*字体相关*/
+.text-grey-666 {
+    color: #666666;
+}
+
+.text-grey-333 {
+    color: #333333;
+}
+
+/*分行代码*/
+.text-oneline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+.text-twoline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+.text-threeline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+.text-fourline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}

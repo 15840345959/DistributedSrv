@@ -1,0 +1,66 @@
+2018-01-13 06:06:28 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"Jqq4ldto19Mx2wd7","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"B880137F92F6F7CEE46457134DE88CAF","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011352515697","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:06:28 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"Jqq4ldto19Mx2wd7","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"B880137F92F6F7CEE46457134DE88CAF","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011352515697","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:06:28 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515823588","nonceStr":"siIg4E1OnZHdIwy3","package":"prepay_id=wx20180113140222fb275649680640408141","signType":"MD5","paySign":"97654671E545FE7355205727022F294F"}] []
+
+2018-01-13 06:06:58 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"rDkB38OVqOK2u0If","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"DBFCBF129699B8AA6561091476B4F4DA","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011350501025","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:06:58 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"rDkB38OVqOK2u0If","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"DBFCBF129699B8AA6561091476B4F4DA","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011350501025","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:06:58 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515823618","nonceStr":"hEcA8C2cyDUfsROf","package":"prepay_id=wx201801131402520534f196670052306622","signType":"MD5","paySign":"B5CD0D363D926FB16B0902708A5CE601"}] []
+
+2018-01-13 06:08:15 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"VXXPcA25Svq8B0yr","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"F88B1A195FB9F9F96122E65CBA14F0F5","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011310255101","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:08:15 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"VXXPcA25Svq8B0yr","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"F88B1A195FB9F9F96122E65CBA14F0F5","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011310255101","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:08:15 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515823695","nonceStr":"GpRwNBarmTC9tICB","package":"prepay_id=wx201801131404097ae9eee6fc0602509271","signType":"MD5","paySign":"E9DB76BD5B72BFB7F7CD69C497AA7062"}] []
+
+2018-01-13 06:09:16 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"7tOSM8LnuSeOt6Vv","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"BBFCFC90AADC56E2B3FB22A7EC33D6DD","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011399101985","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:09:16 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"7tOSM8LnuSeOt6Vv","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"BBFCFC90AADC56E2B3FB22A7EC33D6DD","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011399101985","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:09:17 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515823756","nonceStr":"EA0AaqR9UM1IZLah","package":"prepay_id=wx2018011314051120fc8da6870342638849","signType":"MD5","paySign":"0B379EDAFE485EAEF6CEF4E93DB13828"}] []
+
+2018-01-13 06:36:19 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"ZgaezD8TvBDIrWRW","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"D5462F81FD8145D77D2EC6FF90D16C46","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011351555798","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:36:19 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"ZgaezD8TvBDIrWRW","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"D5462F81FD8145D77D2EC6FF90D16C46","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011351555798","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:36:20 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515825379","nonceStr":"23La3Q5YPH5OPOpv","package":"prepay_id=wx20180113143213e8ad86d9820762008278","signType":"MD5","paySign":"E2DFDF8ADB7D1771E59AD523B0C67FAF"}] []
+
+2018-01-13 06:36:58 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"vLP51M0K44KAafU3","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"6B42238E118959EAFDA9A2C30E51F304","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011397495450","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:36:58 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"vLP51M0K44KAafU3","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"6B42238E118959EAFDA9A2C30E51F304","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011397495450","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:36:58 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515825418","nonceStr":"RWbgfsJm8AxHywdP","package":"prepay_id=wx201801131432521dc71b79230921055704","signType":"MD5","paySign":"C0CBBF1D180AB0170BE1B40A3E8F8392"}] []
+
+2018-01-13 06:42:05 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"ETAHp2ZKU4baMOVF","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"049AA76E074955533651840A36199FA0","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011310051544","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:42:05 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"ETAHp2ZKU4baMOVF","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"049AA76E074955533651840A36199FA0","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011310051544","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:42:05 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515825725","nonceStr":"4ZXxzWfWtEbTSqao","package":"prepay_id=wx201801131437595d6abfe0540186688093","signType":"MD5","paySign":"FD3EBEE3E823845F4FE2B1D054226764"}] []
+
+2018-01-13 06:44:21 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"qW4Ptg5kmqRy95Us","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"B749184A1B8E8FE68977F282B713AC66","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011353564997","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:44:21 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"qW4Ptg5kmqRy95Us","notify_url":"https://tclm.isart.me/api/wechat/notify","sign":"B749184A1B8E8FE68977F282B713AC66","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011353564997","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:44:21 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515825861","nonceStr":"8SeUKxXWh7JFeu0Q","package":"prepay_id=wx20180113144015592aeead570785262744","signType":"MD5","paySign":"274187F2F375102BDFE0D7CD29D09BF4"}] []
+
+2018-01-13 06:50:50 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"yL468VVJMr2gwNb8","notify_url":"https://169.254.239.210/api/wechat/notify","sign":"8FDAA0BC4B84045F0D62A1EB0FBF4740","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011397515153","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:50:50 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"yL468VVJMr2gwNb8","notify_url":"https://169.254.239.210/api/wechat/notify","sign":"8FDAA0BC4B84045F0D62A1EB0FBF4740","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011397515153","total_fee":29,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:50:50 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515826250","nonceStr":"nnzj8YigU0Jlh1qj","package":"prepay_id=wx201801131446449a13b4c0480771460865","signType":"MD5","paySign":"70D638E528521FC45DF009AF4ED53152"}] []
+
+2018-01-13 06:52:46 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"XrAPvp6INQAJwdsj","notify_url":"https://169.254.239.210/api/wechat/notify","sign":"E0E866B05336663B7B302FED3A0739C3","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011310110048","total_fee":1,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:52:46 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"XrAPvp6INQAJwdsj","notify_url":"https://169.254.239.210/api/wechat/notify","sign":"E0E866B05336663B7B302FED3A0739C3","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011310110048","total_fee":1,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:52:47 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515826366","nonceStr":"J1s2OjU2RXTBorD9","package":"prepay_id=wx20180113144841f4de640bce0686006275","signType":"MD5","paySign":"159118AD9C7142C5081785D36FF02962"}] []
+
+2018-01-13 06:53:55 > DEBUG > Pre Order: ["pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"jajDA9ec8vrF9sEq","notify_url":"http://169.254.239.210/tclm/public/api/wechat/notify","sign":"AD0EECE23D45DCD7B8B9364F6AE1D06A","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011351991029","total_fee":1,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:53:55 > DEBUG > Request To Wechat Api ["https://api.mch.weixin.qq.com/pay/unifiedorder",{"appid":"wxd7f6168883d6b7e6","mch_id":"1496111642","nonce_str":"jajDA9ec8vrF9sEq","notify_url":"http://169.254.239.210/tclm/public/api/wechat/notify","sign":"AD0EECE23D45DCD7B8B9364F6AE1D06A","trade_type":"JSAPI","spbill_create_ip":"47.93.127.4","out_trade_no":"2018011351991029","total_fee":1,"body":"包月VIP会员","openid":"ot7_40LmLIDXHX_Bv7fSKti9IjW8"}] []
+
+2018-01-13 06:53:56 > DEBUG > Paying A JSAPI Order: ["https://api.mch.weixin.qq.com/",{"appId":"wxd7f6168883d6b7e6","timeStamp":"1515826435","nonceStr":"M1qS9zTmD067DzRl","package":"prepay_id=wx20180113144950dafb0854f40222552470","signType":"MD5","paySign":"7D376F05E99DA96B3A21975FC7D3210A"}] []
+

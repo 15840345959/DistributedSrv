@@ -1,0 +1,390 @@
+/*
+ * 页面基本样式
+ *
+ * By TerryQi  2017-10-19
+ *
+ * 沈阳艺萨艺术发展有限公司相关
+ *
+ */
+
+/*页面wrapper*/
+
+.wrapper {
+  /*position: fixed;*/
+  width: 100%;
+  /*height: 100%;*/
+}
+
+.wrapper .mint-search {
+  height: initial;
+}
+
+.wrapper .mint-navbar .mint-tab-item.is-selected {
+  margin: 0;
+}
+
+/*页面样式设计*/
+
+html, body {
+  line-height: 22px;
+  height: 100% !important;
+  background-color: #f1f1f1;
+}
+
+/*颜色相关*/
+
+.main-font-color {
+  color: #b42127 !important;
+}
+
+.main-bg {
+  background-color: #ffffff !important;
+}
+
+.white-bg {
+  background-color: #ffffff !important;
+}
+
+.grey-bg {
+  background-color: #eeeeee !important;
+}
+
+.transparent-bg {
+  background-color: transparent !important;
+}
+
+.color-bg {
+  background-color: transparent;
+}
+
+/*字体大小以颜色*/
+
+.font-size-8 {
+  font-size: 0.4rem !important;
+}
+
+.font-size-10 {
+  font-size: 0.5rem !important;
+}
+
+.font-size-22 {
+  font-size: 1.1rem !important;
+}
+
+.font-size-24 {
+  font-size: 1.2rem !important;
+}
+
+.font-size-26 {
+  font-size: 1.3rem !important;
+}
+
+.font-size-28 {
+  font-size: 1.4rem !important;
+}
+
+.font-size-30 {
+  font-size: 1.5rem !important;
+}
+
+.text-grey {
+  color: #999999 !important;
+}
+
+.text-deep-grey {
+  color: #505050 !important;
+}
+
+.text-white {
+  color: #fff !important;
+}
+
+.text-black {
+  color: #000 !important;
+}
+
+.text-fff {
+  color: #fff !important;
+}
+
+.text-ccc {
+  color: #ccc !important;
+}
+
+.text-999 {
+  color: #999 !important;
+}
+
+.text-666 {
+  color: #666 !important;
+}
+
+.text-333 {
+  color: #333 !important;
+}
+
+.text-757575 {
+  color: #757575 !important;
+}
+
+.text-link {
+  color: #5a98de !important;
+}
+
+.font-bolder {
+  font-weight: bolder;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+/*小图标*/
+
+.tab-icon-16 {
+  width: 16px;
+  height: 16px;
+}
+
+.tab-icon-22 {
+  width: 22px;
+  height: 22px;
+}
+
+.tab-icon-28 {
+  width: 28px;
+  height: 28px;
+}
+
+.tab-icon-32 {
+  width: 32px;
+  height: 32px;
+}
+
+.tab-icon-44 {
+  width: 44px;
+  height: 44px;
+}
+
+.tab-icon-50 {
+  width: 50px;
+  height: 50px;
+}
+
+.tab-icon-75 {
+  width: 75px;
+  height: 75px;
+}
+
+/*padding & margin*/
+
+.padded-t-10 {
+  padding-top: 0.5rem !important;
+}
+
+.padded-t-15 {
+  padding-top: 0.75rem !important;
+}
+
+.padded-t-20 {
+  padding-top: 1rem !important;
+}
+
+.padded-t-25 {
+  padding-top: 1.25rem !important;
+}
+
+.padded-t-30 {
+  padding-top: 1.5rem !important;
+}
+
+.padded-t-35 {
+  padding-top: 1.75rem !important;
+}
+
+.padded-t-40 {
+  padding-top: 2rem !important;
+}
+
+.padded-r-20 {
+  padding-right: 1rem !important;
+}
+
+.padded-b-20 {
+  padding-bottom: 1rem !important;
+}
+
+.padded-b-30 {
+  padding-bottom: 1.5rem !important;
+}
+
+.padded-l-20 {
+  padding-left: 1rem !important;
+}
+
+.padded-l-25 {
+  padding-left: 1.25rem !important;
+}
+
+.padded-l-30 {
+  padding-left: 1.5rem !important;
+}
+
+.padded-l-35 {
+  padding-left: 1.75rem !important;
+}
+
+.padded-l-40 {
+  padding-left: 2rem !important;
+}
+
+.padded-l-60 {
+  padding-left: 3rem !important;
+}
+
+.margin-l-20 {
+  margin-left: 1rem !important;
+}
+
+.margin-l-25 {
+  margin-left: 1.25rem !important;
+}
+
+.margin-l-30 {
+  margin-left: 1.5rem !important;
+}
+
+.margin-l-35 {
+  margin-left: 1.75rem !important;
+}
+
+.margin-l-40 {
+  margin-left: 2.0rem !important;
+}
+
+.margin-l-45 {
+  margin-left: 2.25rem !important;
+}
+
+.margin-l-50 {
+  margin-left: 2.5rem !important;
+}
+
+.margin-l-55 {
+  margin-left: 2.75rem !important;
+}
+
+.margin-l-60 {
+  margin-left: 3.0rem !important;
+}
+
+.margin-l-80 {
+  margin-left: 4.0rem !important;
+}
+
+.margin-l-100 {
+  margin-left: 5.0rem !important;
+}
+
+.margin-l-120 {
+  margin-left: 6.0rem !important;
+}
+
+.margin-r-25 {
+  margin-right: 1.25rem !important;
+}
+
+.margin-r-20 {
+  margin-right: 1rem !important;
+}
+
+.margin-t-20 {
+  margin-top: 1rem !important;
+}
+
+.margin-t-25 {
+  margin-top: 1.25rem !important;
+}
+
+.margin-t-30 {
+  margin-top: 1.5rem !important;
+}
+
+.margin-t-35 {
+  margin-top: 1.75rem !important;
+}
+
+.margin-t-40 {
+  margin-top: 2rem !important;
+}
+
+.margin-t-45 {
+  margin-top: 2.25rem !important;
+}
+
+.margin-t-50 {
+  margin-top: 2.5rem !important;
+}
+
+.margin-t-60 {
+  margin-top: 3rem !important;
+}
+
+/*文字分行*/
+
+.text-oneline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.text-twoline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.text-threeline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.text-fourline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+.text-fiveline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
