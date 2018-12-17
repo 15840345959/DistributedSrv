@@ -74,13 +74,23 @@ class VoteActivityManager
         //录入人员
         $info->admin = AdminManager::getById($info->admin_id);
 
+
+        /*
+         * 此处存在问题，但未进行优化，应该遵循getInfoByLevel的方式，根据level来设定rule和present_rule对象
+         *
+         * By TerryQi
+         *
+         * 2018-12-17
+         */
         //大赛规则
         if ($info->rule_id) {
-            $info->rule_html = VoteRuleManager::getById($info->rule_id)->rule_html;
+            $rule = VoteRuleManager::getById($info->rule_id);
+            $info->rule_html = ($rule == null) ? "" : $rule->rule_html;
         }
 
         if ($info->present_rule_id) {
-            $info->present_rule_html = VoteRuleManager::getById($info->present_rule_id)->rule_html;
+            $present_rule = VoteRuleManager::getById($info->present_rule_id);
+            $info->present_rule_html = ($present_rule == null) ? "" : $present_rule->rule_html;
         }
 //        dd($info);
         //带礼品信息
