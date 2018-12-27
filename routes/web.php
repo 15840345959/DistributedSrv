@@ -21,14 +21,8 @@ Route::get('/MP_verify_u8o0o6vDsLXCjpty.txt', function () {
 });
 
 //官网index
-Route::any('/', function () {
-    return "hello world";
-});        //重定向到官网在2018-12-21部署
-
-
-//官网index
-Route::any('/test', function () {
-    return "test hello world";
+Route::any('/slb/test', function () {
+    return "for slb test";
 });        //重定向到官网在2018-12-21部署
 
 
