@@ -20,6 +20,11 @@ Route::get('/MP_verify_u8o0o6vDsLXCjpty.txt', function () {
     return response()->download(realpath(base_path('app')) . '/files/MP_verify_u8o0o6vDsLXCjpty.txt', 'MP_verify_u8o0o6vDsLXCjpty.txt');
 });
 
+//官网index
+Route::any('/', function () {
+    return "hello world";
+});        //重定向到官网在2018-12-21部署
+
 
 //管理后台 start/////////////////////////////////////////////////////////////////////////////////////////////////
 
