@@ -21,6 +21,12 @@ Route::get('/MP_verify_u8o0o6vDsLXCjpty.txt', function () {
 });
 
 //官网index
+Route::any('/', function () {
+    return "index hello world";
+});        //重定向到官网在2018-12-21部署
+
+
+//slb健康检查
 Route::any('/slb/test', function () {
     return "for slb test";
 });        //重定向到官网在2018-12-21部署
