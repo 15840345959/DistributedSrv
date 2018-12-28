@@ -132,7 +132,7 @@ class MryhPicManager
         //生成新图片
         $file_name = Utils::generateTradeNo() . '.png';
         Utils::processLog(__METHOD__, '', "file_name:" . $file_name);
-        $generate_haibao_path = public_path('img/mryh/haibao/' . $file_name);
+        $generate_haibao_path = public_path('img/nas/' . $file_name);
         imagejpeg($haibao_base_img, $generate_haibao_path);
         $generate_haibao_img = imagecreatefromjpeg($generate_haibao_path);
         Utils::processLog(__METHOD__, '', "生成新海报");
