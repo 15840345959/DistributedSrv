@@ -188,8 +188,8 @@ Route::group(['prefix' => 'mryh', 'middleware' => ['BeforeRequest', 'cors']], fu
     Route::get('withdraw/getById', 'API\MRYHXCX\MryhWithdrawCashController@getById')->middleware('user.checkToken');   //根据id获取提现信息详情
 
     //获取分享海报
-    Route::post('pic/share', 'API\MRYHXCX\MryhPicController@share');   //获取分享海报
-    Route::post('pic/shareGame', 'API\MRYHXCX\MryhPicController@shareGame');  //分享活动
+    Route::any('pic/share', 'API\MRYHXCX\MryhPicController@share');   //获取分享海报
+    Route::any('pic/shareGame', 'API\MRYHXCX\MryhPicController@shareGame');  //分享活动
 
     //生成证书-测试用
     Route::post('pic/cert', 'API\MRYHXCX\MryhPicController@cert');   //测试证书
