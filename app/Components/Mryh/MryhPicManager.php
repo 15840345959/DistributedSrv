@@ -149,15 +149,6 @@ class MryhPicManager
         $ewm_filename = Utils::generateTradeNo() . ".png";
         Utils::processLog(__METHOD__, '', "ewm_file_name:" . $ewm_filename);
 
-        $ewm_response = $app->app_code->get('pages/gameDetail/main?game_id=' . $mryhGame->id, [
-            'width' => 400,
-        ]);
-        $ewm_response->saveAs(public_path('img/mryh/haibao/'), $ewm_filename);
-        $ewm_img = imagecreatefromjpeg(public_path('img/mryh/haibao/') . $ewm_filename);
-        $ewm_img = Utils::resizeImage($ewm_img, 140, 140);
-
-        imagecopymerge($generate_haibao_img, $ewm_img, 330, 650, 0, 0, imagesx($ewm_img), imagesy($ewm_img), 100);
-        Utils::processLog(__METHOD__, '', "集成小程序二维码图片");
         //活动标题
         $color = imagecolorallocatealpha($generate_haibao_img, 0, 0, 0, 0);
         imagettftext($generate_haibao_img, 38, 0, 385, 575, $color, $fontfile, $mryhGame->target_join_day);
