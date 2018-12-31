@@ -234,6 +234,9 @@ class VoteUserManager
         if (array_key_exists('activity_id', $con_arr) && !Utils::isObjNull($con_arr['activity_id'])) {
             $infos = $infos->where('activity_id', '=', $con_arr['activity_id']);
         }
+        if (array_key_exists('user_id', $con_arr) && !Utils::isObjNull($con_arr['user_id'])) {
+            $infos = $infos->where('user_id', '=', $con_arr['user_id']);
+        }
         if (array_key_exists('where_in_activity_id', $con_arr) && !Utils::isObjNull($con_arr['where_in_activity_id'])) {
             $infos = $infos->wherein('activity_id', $con_arr['where_in_activity_id']);
         }
@@ -260,11 +263,25 @@ class VoteUserManager
         if (array_key_exists('valid_status', $con_arr) && !Utils::isObjNull($con_arr['valid_status'])) {
             $infos = $infos->where('valid_status', '=', $con_arr['valid_status']);
         }
+
+        if (array_key_exists('start_at', $con_arr) && !Utils::isObjNull($con_arr['start_at'])) {
+            $infos = $infos->where('created_at', '>=', $con_arr['start_at']);
+        }
+        if (array_key_exists('end_at', $con_arr) && !Utils::isObjNull($con_arr['end_at'])) {
+            $infos = $infos->where('created_at', '<=', $con_arr['end_at']);
+        }
+
         //排序设定
         if (array_key_exists('orderby', $con_arr) && is_array($con_arr['orderby'])) {
             $orderby_arr = $con_arr['orderby'];
             if (array_key_exists('vote_num', $orderby_arr) && !Utils::isObjNull($orderby_arr['vote_num'])) {
                 $infos = $infos->orderby('vote_num', $orderby_arr['vote_num']);
+            }
+            if (array_key_exists('user_id', $orderby_arr) && !Utils::isObjNull($orderby_arr['user_id'])) {
+                $infos = $infos->orderby('user_id', $orderby_arr['user_id']);
+            }
+            if (array_key_exists('valid_status', $orderby_arr) && !Utils::isObjNull($orderby_arr['valid_status'])) {
+                $infos = $infos->orderby('valid_status', $orderby_arr['valid_status']);
             }
             if (array_key_exists('show_num', $orderby_arr) && !Utils::isObjNull($orderby_arr['show_num'])) {
                 $infos = $infos->orderby('show_num', $orderby_arr['show_num']);

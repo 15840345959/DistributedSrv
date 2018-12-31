@@ -204,6 +204,7 @@ class MryhWithdrawCashController
             $xcxForm->user_id = $user_id;
             $xcxForm->busi_name = self::BUSI_NAME;
             $xcxForm->form_id = $data['form_id'];
+            $xcxForm->total_num = 1;        //提现表单total_num=1
             $xcxForm->f_table = Utils::F_TABLE_MRYH_WITHDRAW;
             $xcxForm->f_id = $mryhWithdrawCash->id;
             $xcxForm->save();

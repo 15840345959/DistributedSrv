@@ -33,6 +33,9 @@ class OptInfoController
             'f_table' => $f_table
         );
         $optInfos = OptInfoManager::getListByCon($con_arr, true);
+        foreach ($optInfos as $optInfo) {
+            $optInfo = OptInfoManager::getInfoByLevel($optInfo, '');
+        }
 
         return view('admin.optInfo.index', ['admin' => $admin, 'datas' => $optInfos, 'con_arr' => $con_arr]);
     }
@@ -65,7 +68,6 @@ class OptInfoController
                 }
                 $optInfo = OptInfoManager::setInfo($optInfo, $data);
                 $result = $optInfo->save();
-
 
 
                 if ($result) {

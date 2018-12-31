@@ -15,16 +15,20 @@ use App\Components\OptInfoManager;
 use App\Components\OptRecordManager;
 use App\Components\QNManager;
 use App\Components\RequestValidator;
+use App\Components\UserManager;
 use App\Components\Utils;
 use App\Components\Vote\VoteActivityManager;
 use App\Components\Vote\VoteRuleManager;
+use App\Components\Vote\VoteShareRecordManager;
 use App\Components\Vote\VoteTeamManager;
+use App\Components\Vote\VoteUserManager;
 use App\Http\Controllers\ApiResponse;
 use App\Models\OptInfo;
 use App\Models\OptRecord;
 use App\Models\Vote\VoteActivity;
 use App\Models\Vote\VoteOrder;
 use App\Models\Vote\VoteRecord;
+use App\Models\Vote\VoteShareRecord;
 use App\Models\Vote\VoteUser;
 use function Couchbase\defaultDecoder;
 use Illuminate\Http\Request;
@@ -312,6 +316,7 @@ class VoteActivityController
         $new_activity->sel_index_ad_ids = $orgin_activity->sel_index_ad_ids;
         $new_activity->sel_pm_ad_ids = $orgin_activity->sel_pm_ad_ids;
         $new_activity->sel_tp_ad_ids = $orgin_activity->sel_tp_ad_ids;
+        $new_activity->sel_tp_ad_url = $orgin_activity->sel_tp_ad_url;
         $new_activity->show_ad_mode = $orgin_activity->show_ad_mode;
         $new_activity->apply_start_time = $orgin_activity->apply_start_time;
         $new_activity->apply_end_time = $orgin_activity->apply_end_time;
@@ -396,12 +401,91 @@ class VoteActivityController
     /*
      * 导出获奖证书
      *
-     * By 智强
+     * By leek
      *
      * 2018-12-06
      *
      */
-    public function prizeStatements(Request $request)
+    public function prizeStatementsWeb(Request $request)
+    {
+        $data = $request->all();
+
+        $activity = VoteActivity::find(array_get($data, 'id'));
+
+        $first_prize_num = $activity->first_prize_num;
+        $second_prize_num = $activity->second_prize_num;
+        $third_prize_num = $activity->third_prize_num;
+
+//        $title = ['编号', '姓名', '奖项', '发证日期'];
+//        $title = implode("\t", $title);
+//
+//        ob_get_clean();
+//        ob_start();
+//
+//        echo iconv('utf-8', 'gbk', $title) . "\n";
+
+        $prizeStatements = collect([]);
+
+        $prize_user = VoteUser::where('activity_id', array_get($data, 'id'))
+            ->where('status', '=', 1)
+            ->orderby('vote_num', 'desc')
+            ->get();
+
+        foreach ($prize_user as $index => $item) {
+            $index = $index + 1;
+            Utils::processLog(__METHOD__, '', $index);
+            Utils::processLog(__METHOD__, '', json_encode($item->toArray()));
+            $prize = null;
+            if ($index <= $first_prize_num) {
+                Utils::processLog(__METHOD__, '', '金奖');
+                $prize = '金奖';
+            } else if ($index <= $first_prize_num + $second_prize_num) {
+                Utils::processLog(__METHOD__, '', '银奖');
+                $prize = '银奖';
+            } else if ($index <= $first_prize_num + $second_prize_num + $third_prize_num) {
+                Utils::processLog(__METHOD__, '', '铜奖');
+                $prize = '铜奖';
+            } else if ($item->vote_num >= 500) {
+                Utils::processLog(__METHOD__, '', '优秀奖');
+                $prize = '优秀奖';
+            } else {
+                continue;
+            }
+
+            $row = array();
+            $row['code'] = $activity->code . '-' . $item->code;
+            $row['name'] = $item->name ? explode(" ", $item->name)[0] : '';
+//            $row['phonenum'] = $item->phonenum;
+            $row['prize'] = $prize ? $prize : ' ';
+            $row['time'] = substr($activity->vote_end_time, 0, 10);
+
+//            $rows = implode("\t", $row) . "\n";
+//            Utils::processLog(__METHOD__, '', $rows);
+//            echo iconv('utf-8', 'gbk', $rows);
+
+            $prizeStatements->push($row);
+        };
+
+        $prizeStatements->all();
+
+//        return response('')->header('Content-Disposition', 'attachment; filename=' . $activity->name . '.xls')
+//            ->header('Accept-Ranges', 'bytes')
+//            ->header('Content-Length', ob_get_length())
+//            ->header('Content-Type', 'application/vnd.ms-excel;charset=utf-8');
+
+        return view('admin.vote.voteActivity.prize', ['datas' => $prizeStatements, 'id' => array_get($data, 'id')]);
+
+    }
+
+    /*
+     * 导出获奖证书
+     *
+     * By leek
+     *
+     * 2018-12-06
+     *
+     */
+    public function prizeStatementsExcel(Request $request)
     {
         $data = $request->all();
 
@@ -652,5 +736,52 @@ class VoteActivityController
 
     }
 
+    /*
+         * 分享明细
+         *
+         * By leek
+         *
+         * 2018-12-06
+         *
+         */
+    public function shareIndex(Request $request)
+    {
+        $data = $request->all();
 
+        //配置条件
+        $activity_id = null;
+        $user_id = null;
+        $start_at = DateTool::dateAdd('D', -30, DateTool::getToday(), 'Y-m-d');
+        $end_at = DateTool::dateAdd('D', 1, DateTool::getToday(), 'Y-m-d');
+
+        if (array_key_exists('activity_id', $data) && !Utils::isObjNull($data['activity_id'])) {
+            $activity_id = $data['activity_id'];
+        }
+        if (array_key_exists('user_id', $data) && !Utils::isObjNull($data['user_id'])) {
+            $user_id = $data['user_id'];
+        }
+
+        if (array_key_exists('start_at', $data) && !Utils::isObjNull($data['start_at'])) {
+            $start_at = $data['start_at'];
+        }
+        if (array_key_exists('end_at', $data) && !Utils::isObjNull($data['end_at'])) {
+            $end_at = $data['end_at'];
+        }
+        $con_arr = array(
+            'start_at' => $start_at,
+            'end_at' => $end_at,
+            'activity_id' => $activity_id,
+            'user_id' => $user_id,
+            'orderby' => [
+                'user_id' => 'desc',
+                'valid_status' => 'desc'
+            ]
+        );
+        $vote_users = VoteUserManager::getListByCon($con_arr, false);
+        foreach ($vote_users as $vote_user) {
+            $vote_user = VoteUserManager::getInfoByLevel($vote_user, '01');
+        }
+
+        return view('admin.vote.voteActivity.share', ['datas' => $vote_users, 'activity_id' => array_get($data, 'activity_id'), 'con_arr' => $con_arr]);
+    }
 }

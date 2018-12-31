@@ -10,7 +10,7 @@
                     class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="page-container">
         <div class="text-c">
-            <form id="search_form"  action="{{URL::asset('admin/zan/index')}}" method="post" class="form-horizontal">
+            <form id="search_form" action="{{URL::asset('admin/zan/index')}}" method="post" class="form-horizontal">
                 {{csrf_field()}}
                 <div class="Huiform text-r">
                     <span class="">用户id：</span>
@@ -64,7 +64,11 @@
                     <td>
                         <span class="c-primary">
                             @if($data->f_table=='article')
-                                {{$data->article->name}}({{$data->article->id}})
+                                @if(isset($data->article))
+                                    {{$data->article->name}}({{$data->article->id}})
+                                @else
+                                    作品被删除({{$data->f_id}})
+                                @endif
                             @endif
                         </span>
                     </td>

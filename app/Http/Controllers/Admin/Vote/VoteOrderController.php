@@ -14,6 +14,7 @@ use App\Components\QNManager;
 use App\Components\Vote\VoteActivityManager;
 use App\Components\Vote\VoteOrderManager;
 use App\Components\Utils;
+use App\Components\Vote\VoteUserManager;
 use App\Http\Controllers\ApiResponse;
 use App\Models\Admin;
 use App\Models\Vote\VoteUser;
@@ -84,7 +85,30 @@ class VoteOrderController
             return redirect()->action('\App\Http\Controllers\Admin\IndexController@error', ['msg' => '合规校验失败，请检查参数订单id$id']);
         }
         $vote_order = VoteOrderManager::getById($id);
-        $vote_order->pay_status = $data['pay_status'];
+        //进行退款
+        /*
+         * 2018-12-17 优化业务，其中确保pay_status为4，代表退款，则需要将选手和活动的礼物金额进行扣减
+         *
+         *
+         * By TerryQi
+         *
+         */
+        if (array_key_exists('pay_status', $data) && !Utils::isObjNull($data['pay_status'])) {
+            $vote_order->pay_status = $data['pay_status'];
+
+            //进行大赛的金额扣减
+            $voteActivity = VoteActivityManager::getById($vote_order->activity_id);
+            $voteActivity->gift_money = $voteActivity->gift_money - $vote_order->total_fee;
+            $voteActivity->save();
+
+            //进行选手金额扣减
+            $voteUser = VoteUserManager::getById($vote_order->vote_user_id);
+            $voteUser->gift_money = $voteUser->gift_money - $vote_order->total_fee;
+            //扣减选手的票数
+            $voteUser->vote_num = $voteUser->vote_num - $vote_order->as_vote_num;
+            $voteUser->save();
+        }
+
         $vote_order->save();
         return ApiResponse::makeResponse(true, $vote_order, ApiResponse::SUCCESS_CODE);
     }

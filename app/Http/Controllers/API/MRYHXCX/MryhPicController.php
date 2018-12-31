@@ -84,7 +84,7 @@ class MryhPicController
 
 
     /*
-     * 生成证书
+     * 生成证书-测试用
      *
      * By TerryQi
      *
@@ -148,7 +148,7 @@ class MryhPicController
         Utils::processLog(__METHOD__, '', '完成app配置');
         $file_name = MryhPicManager::generateGameHaiBao($mryhGame->id, $data['user_id'], $app);
 
-        $img_url = URL::asset('/img/nas/' . $file_name);
+        $img_url = URL::asset('/img/mryh/haibao/' . $file_name);
         Utils::processLog(__METHOD__, '', '海报样式 img_url：' . json_encode($img_url));
         $mryhGame->https_share_haibao = $img_url;
         unset($mryhGame->intro_html);

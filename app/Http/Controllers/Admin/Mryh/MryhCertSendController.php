@@ -11,11 +11,11 @@ namespace App\Http\Controllers\Admin\Mryh;
 
 use App\Components\AdminManager;
 use App\Components\QNManager;
-use App\Components\Vote\VoteCertSendManager;
+use App\Components\Mryh\MryhCertSendManager;
 use App\Components\Utils;
 use App\Http\Controllers\ApiResponse;
 use App\Models\Admin;
-use App\Models\Vote\VoteGift;
+use App\Models\Mryh\MryhGift;
 use Illuminate\Http\Request;
 use App\Libs\ServerUtils;
 use App\Components\RequestValidator;
@@ -32,11 +32,11 @@ class MryhCertSendController
 //        dd($data);
         $admin = $request->session()->get('admin');
         $con_arr = array();
-        $voteCertSends = VoteCertSendManager::getListByCon($con_arr, true);
-        foreach ($voteCertSends as $voteCertSend) {
-            $voteCertSend = VoteCertSendManager::getInfoByLevel($voteCertSend, '0');
+        $mryhCertSends = MryhCertSendManager::getListByCon($con_arr, true);
+        foreach ($mryhCertSends as $mryhCertSend) {
+            $mryhCertSend = MryhCertSendManager::getInfoByLevel($mryhCertSend, '0');
         }
-//        dd($voteCertSends);
-        return view('admin.vote.voteCertSend.index', ['datas' => $voteCertSends, 'con_arr' => $con_arr]);
+//        dd($mryhCertSends);
+        return view('admin.mryh.mryhCertSend.index', ['datas' => $mryhCertSends, 'con_arr' => $con_arr]);
     }
 }

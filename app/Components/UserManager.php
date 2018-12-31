@@ -106,10 +106,19 @@ class UserManager
                     ->orwhere('real_name', 'like', "%{$keyword}%");
             });
         }
+        //2018-12-26，用于替换存量的在微信上的头像
+        if (array_key_exists('avatar_search_word', $con_arr) && !Utils::isObjNull($con_arr['avatar_search_word'])) {
+            $infos = $infos->where('avatar', 'like', "%" . $con_arr['avatar_search_word'] . "%");
+        }
         $infos = $infos->orderby('id', 'desc');
         //配置规则
         if ($is_paginate) {
-            $infos = $infos->paginate(Utils::PAGE_SIZE);
+            $page_size = Utils::PAGE_SIZE;
+            //如果con_arr中有page_size信息
+            if (array_key_exists('page_size', $con_arr) && !Utils::isObjNull($con_arr['page_size'])) {
+                $page_size = $con_arr['page_size'];
+            }
+            $infos = $infos->paginate($page_size);
         } else {
             $infos = $infos->get();
         }
@@ -295,9 +304,18 @@ class UserManager
             case Utils::ACCOUNT_TYPE_XCX:   //小程序登录
                 $user = self::loginXCX($data);
                 break;
-
-
         }
+
+        //进行用户的头像处理
+        /*
+         * 2018-12-26日进行优化，在运营过程中发现，部分用户头像丢失的问题，经排查问题为用户更换头像，则微信登录时的头像则失效，因此在登录时需要进行用户头像的处理
+         *
+         * 如果用户头像属于三方，则进行七牛上传，并更新
+         *
+         * By TerryQi
+         *
+         */
+        UserAvaterManager::setAvaterToQN($user->id);
 
         return $user;
     }
@@ -659,4 +677,19 @@ class UserManager
             return null;
         }
     }
+
+
+    /*
+     * 随机获取头像数据
+     *
+     * By TerryQi
+     *
+     * 2018-12-28
+     */
+    public static function getRandomAvatar()
+    {
+        $avatar_url = Utils::AVATAR_ARR[rand(0, count(Utils::AVATAR_ARR) - 1)];
+        return $avatar_url;
+    }
+
 }

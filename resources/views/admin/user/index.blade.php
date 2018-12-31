@@ -38,7 +38,7 @@
         <table class="table table-border table-bordered table-bg table-sort mt-10">
             <thead>
             <tr>
-                <th scope="col" colspan="9">用户列表</th>
+                <th scope="col" colspan="10">用户列表</th>
             </tr>
             <tr class="text-c">
                 {{--<th width="25"><input type="checkbox" name="" value=""></th>--}}
@@ -47,6 +47,7 @@
                 <th width="100">昵称</th>
                 <th width="50">省份</th>
                 <th width="50">城市</th>
+                <th width="50">积分</th>
                 <th width="130">加入时间</th>
                 <th width="60">类型</th>
                 <th width="50">状态</th>
@@ -65,6 +66,7 @@
                     <td>{{$data->nick_name}}</td>
                     <td>{{$data->province}}</td>
                     <td>{{$data->city}}</td>
+                    <td>{{$data->score}}</td>
                     <td>{{$data->created_at}}</td>
                     <td>
                         <span class="c-primary">{{$data->type_str}}</span>

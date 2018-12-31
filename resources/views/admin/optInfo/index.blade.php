@@ -11,7 +11,7 @@
     <div class="page-container">
 
         <div class="text-c">
-            <form id="search_form"  action="{{ route('optInfo.index') }}" method="post" class="form-horizontal">
+            <form id="search_form" action="{{ route('optInfo.index') }}" method="post" class="form-horizontal">
                 {{csrf_field()}}
                 <div class="Huiform text-r">
                      <span class="select-box" style="width: 250px;">
@@ -53,13 +53,7 @@
                 <tr class="text-c">
                     <td>{{$data->id}}</td>
                     <td>
-                        @if($data->f_table=="order")
-                            <span class="c-primary">订单操作 </span>
-                        @elseif($data->f_table=="activity")
-                            <span class="c-primary">活动操作</span>
-                        @else
-                            <span class="c-primary">未知操作</span>
-                        @endif
+                        <span class="c-primary">{{$data->f_table_str}} </span>
                     </td>
                     <td>{{$data->name}}</td>
                     <td>{{isset($data->value)?$data->value:'预留'}}</td>

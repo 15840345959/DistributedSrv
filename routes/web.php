@@ -21,21 +21,7 @@ Route::get('/MP_verify_u8o0o6vDsLXCjpty.txt', function () {
 });
 
 //官网index
-Route::any('/', function () {
-    return "index hello world";
-});        //重定向到官网在2018-12-21部署
-
-
-//slb健康检查
-Route::any('/slb/test', function () {
-    return "for slb test";
-});        //重定向到官网在2018-12-21部署
-
-
-//slb健康检查
-Route::any('/slb', function () {
-    return "for slb test";
-});        //重定向到官网在2018-12-21部署
+Route::any('/', 'IndexController@index');        //重定向到官网在2018-12-21部署
 
 
 //管理后台 start/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,6 +75,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['BeforeRequest', 'admin.chec
     Route::post('/ad/edit', 'Admin\ADController@editPost');  //轮播图管理添加、编辑-post
     Route::get('/ad/setStatus/{id}', 'Admin\ADController@setStatus');  //设置轮播图状态
     Route::get('/ad/del/{id}', 'Admin\ADController@del');  //删除广告图
+
+    //小程序表单管理
+    Route::any('/xcxForm/index', 'Admin\XCXFormController@index');  //作品管理首页
 
     //作品管理
     Route::any('/article/index', 'Admin\ArticleController@index');  //作品管理首页
@@ -216,7 +205,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['BeforeRequest', 'admin.chec
         Route::get('/voteActivity/setStatus/{id}', 'Admin\Vote\VoteActivityController@setStatus');  //设置投票活动状态
         Route::get('/voteActivity/copy', 'Admin\Vote\VoteActivityController@copy');  //复制活动
         Route::get('/voteActivity/settle', ['as' => 'voteActivity.settle', 'uses' => 'Admin\Vote\VoteActivityController@settle']);  //地推团队结算
-        Route::get('/voteActivity/prizeStatements/', ['as' => 'voteActivity.prizeStatements', 'uses' => 'Admin\Vote\VoteActivityController@prizeStatements']);  //地推团队结算
+        Route::get('/voteActivity/prizeStatements/web', ['as' => 'voteActivity.prizeStatements.web', 'uses' => 'Admin\Vote\VoteActivityController@prizeStatementsWeb']);  //获奖名单
+        Route::get('/voteActivity/prizeStatements/excel', ['as' => 'voteActivity.prizeStatements.excel', 'uses' => 'Admin\Vote\VoteActivityController@prizeStatementsExcel']);  //获奖名单excel
+        Route::any('/voteActivity/share/index', ['as' => 'voteActivity.share.index', 'uses' => 'Admin\Vote\VoteActivityController@shareIndex']);  //分享明细
 
         Route::get('/voteActivity/importVoteUser', 'Admin\Vote\VoteUserController@importVoteUser');  //导入选手-get
         Route::post('/voteActivity/importVoteUser', 'Admin\Vote\VoteUserController@importVoteUserPost');  //导入选手-post
@@ -317,6 +308,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['BeforeRequest', 'admin.chec
         Route::post('/mryhGame/edit', 'Admin\Mryh\MryhGameController@editPost');  //活动管理添加、编辑-post
         Route::get('/mryhGame/setStatus/{id}', 'Admin\Mryh\MryhGameController@setStatus');  //设置活动状态
         Route::get('/mryhGame/copy', 'Admin\Mryh\MryhGameController@copy');  //复制活动
+        Route::get('/mryhGame/editAdvPrice', 'Admin\Mryh\MryhGameController@editAdvPrice');  //编辑预置奖金-get
+        Route::post('/mryhGame/editAdvPrice', 'Admin\Mryh\MryhGameController@editAdvPricePost');  //编辑预置奖金-post
 
         //优惠券管理
         Route::any('/mryhCoupon/index', 'Admin\Mryh\MryhCouponController@index');  //优惠券管理
@@ -342,6 +335,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['BeforeRequest', 'admin.chec
 
         //清分明细
         Route::any('/mryhComputePrize/index', 'Admin\Mryh\MryhComputePrizeController@index');
+
+        //证书下载明细
+        Route::any('/mryhCertSend/index', 'Admin\Mryh\MryhCertSendController@index');
 
     });
 
@@ -555,7 +551,23 @@ Route::group(['prefix' => 'test', 'middleware' => ['BeforeRequest']], function (
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+//营销活动页面 start////////////////////////////////////////////////////////////////////////////////////////////////
+//本地测试不加路由'wechat.oauth'    , 'wechat.oauth'
+Route::group(['prefix' => 'yxhd', 'middleware' => ['BeforeRequest', 'wechat.oauth']], function () {
 
+    Route::get('/turnplate/error', 'Yxhd\Turnplate\Html5\IndexController@error');        //营销活动错误页面
+
+    //页面跳转类
+    Route::get('/turnplate/index', 'Yxhd\Turnplate\Html5\IndexController@index');        //营销活动首页
+    Route::get('/turnplate/prize', 'Yxhd\Turnplate\Html5\IndexController@prize');        //营销活动商品介绍页
+
+    //post表单提交类
+    Route::any('/api/turnplate/draw', 'Yxhd\Turnplate\Html5\APIController@draw');        //抽奖接口
+    Route::any('/api/turnplate/share', 'Yxhd\Turnplate\Html5\APIController@share');        //分享活动接口
+
+});
+
+//营销活动页面 end////////////////////////////////////////////////////////////////////////////////////////////
 
 
 

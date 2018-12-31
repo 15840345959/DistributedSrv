@@ -117,6 +117,9 @@ class YxhdActivityManager
         if (array_key_exists('share_desc', $data)) {
             $info->share_desc = array_get($data, 'share_desc');
         }
+        if (array_key_exists('share_url', $data)) {
+            $info->share_url = array_get($data, 'share_url');
+        }
         if (array_key_exists('seq', $data)) {
             $info->seq = array_get($data, 'seq');
         }

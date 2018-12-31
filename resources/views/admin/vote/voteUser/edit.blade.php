@@ -428,8 +428,10 @@
 
                             </div>
 
-                            <li id="pickfiles" class="item add" data-num="10" data-type="png,jpg,jpeg,gif" style="margin-left: 0px;">
-                                <svg class="icon" viewBox="0 0 1024 1024" version="1" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                            <li id="pickfiles" class="item add" data-num="10" data-type="png,jpg,jpeg,gif"
+                                style="margin-left: 0px;">
+                                <svg class="icon" viewBox="0 0 1024 1024" version="1" xmlns="http://www.w3.org/2000/svg"
+                                     width="200" height="200">
                                     <defs>
                                         <style></style>
                                     </defs>
@@ -495,7 +497,7 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">礼物总金额：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input id="gift_money" name="gift_money" type="number" class="input-text" disabled
+                    <input id="gift_money" name="gift_money" type="number" class="input-text"
                            value="{{ isset($data->gift_money) ? $data->gift_money : '0' }}" placeholder="礼物总金额">
                     {{--<span class="ml-5 c-danger">该字段不能修改，确保资金准确</span>--}}
                 </div>

@@ -182,10 +182,16 @@ class MryhJoinManager
         $infos = $infos->orderByRaw("locate('0',game_status) desc")->orderby('id', 'desc');
 
         if ($is_paginate) {
-            $infos = $infos->paginate(Utils::PAGE_SIZE);
+            $page_size = Utils::PAGE_SIZE;
+            //如果con_arr中有page_size信息
+            if (array_key_exists('page_size', $con_arr) && !Utils::isObjNull($con_arr['page_size'])) {
+                $page_size = $con_arr['page_size'];
+            }
+            $infos = $infos->paginate($page_size);
         } else {
             $infos = $infos->get();
         }
+        
         return $infos;
     }
 
@@ -262,7 +268,13 @@ class MryhJoinManager
             $mryhJoinArticles_num = self::uploadNumAtDate($mryhJoin->id, DateTool::dateAdd('D', -1, DateTool::getToday()));
             Utils::processLog(__METHOD__, '', "每天一画活动参与是否成功计划 mryhJoinArticle exit_mryhJoinArticles_num:" . $mryhJoinArticles_num);
             //用户昨天没有上传作品，则设置为失败
-            if ($mryhJoinArticles_num == 0) {
+            /*
+             * 2018-12-18进行逻辑优化，即用户前一天没有上传作品 并且 不是24小时内参赛的，则将活动设置为失败
+             *
+             * By TerryQi
+             *
+             */
+            if ($mryhJoinArticles_num == 0 && (DateTool::dateDiff('H', $mryhJoin->join_time, DateTool::getCurrentTime()) >= 24)) {
                 $mryhJoin->game_status = '2';
                 $mryhJoin->save();
                 //失败后，增加活动的失败次数 2018-11-29日进行逻辑测试时发现
@@ -271,6 +283,10 @@ class MryhJoinManager
                 //小程序发送失败模板
                 MryhSendXCXTplMessageManager::sendJoinResultMessage($mryhJoin->id);
                 /////////////////////////////////////////////////////////////
+                //2018-12-17增加逻辑，即如果失败，则增加mryh_user_info中的join_notify_num，即参赛提醒消息数
+                $mryhUser = MryhUserManager::getByUserId($mryhJoin->user_id);
+                $mryhUser->join_notify_num = $mryhUser->join_notify_num + 1;        //参赛提醒消息数+1
+                $mryhJoin->save();
             }
         }
     }

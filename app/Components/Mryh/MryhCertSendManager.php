@@ -44,11 +44,19 @@ class MryhCertSendManager
      * By TerryQi
      *
      * 2018-07-05
+     *
+     * 0：带参赛信息，参赛信息中带 活动名称和用户信息
      */
     public static function getInfoByLevel($info, $level)
     {
+        $info->status_str = Utils::COMMON_STATUS_VAL[$info->status];
 
-        $info->mryh_user = MryhUserManager::getById($info->join_id);
+        if (strpos($level, '0') !== false) {
+            $mryhJoin = MryhJoinManager::getById($info->join_id);
+            $mryhJoin = MryhJoinManager::getInfoByLevel($mryhJoin, '01');
+
+            $info->join = $mryhJoin;
+        }
 
         return $info;
     }

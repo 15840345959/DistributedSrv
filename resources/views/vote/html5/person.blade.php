@@ -134,7 +134,8 @@
             <div class="aui-slide-wrap">
                 @foreach($index_ads as $index_ad)
                     <div class="aui-slide-node bg-dark">
-                        <img src="{{$index_ad['img']}}?imageView2/1/w/600/h/350/interlace/1/q/75"/>
+                        <img src="{{$index_ad['img']}}?imageView2/1/w/600/h/350/interlace/1/q/75"
+                             onclick="clickAD('{{$index_ad['url']}}','{{$activity->id}}','{{$vote_user->id}}');"/>
                     </div>
                 @endforeach
             </div>
@@ -416,8 +417,8 @@
         <!--遮罩层-->
         <div class="mask_div"></div>
         <!--提示部分-->
-        <div style="position: absolute;top: 120px;width: 100%;">
-            <div style="width: 70%;margin: auto;">
+        <div style="position: absolute;top: 15%;width: 100%;">
+            <div style="width: 85%;margin: auto;">
                 <div class="aui-text-center"
                      style="background: #FF5959;border-top-left-radius: 5px;border-top-right-radius: 5px;">
                     <div>
@@ -431,16 +432,17 @@
                     </div>
                     <div class="aui-padded-t-15">
                     <span id="latest_vote_num_span" style="margin-top: 30px;font-weight: bolder;font-size: 24px;"
-                          class="aui-text-white">2283</span>
+                          class="aui-text-white">--</span>
                         <span class="aui-font-size-14 aui-text-white">℃</span>
                     </div>
                     <div style="height: 30px;"></div>
                 </div>
                 <div class="aui-text-center"
                      style="background: white;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">
-                    <div style="padding-top: 10px;">
-                        <img src="{{$tp_ad['img']}}?imageView2/1/w/600/h/350/interlace/1/q/75"
-                             style="width: 94%;height: 160px;margin: auto;">
+                    <div style="padding-top: 10px;"
+                         onclick="clickTPAD('{{$activity->sel_tp_ad_url}}','{{$activity->id}}','{{$vote_user->id}}');">
+                        <img src="{{$tp_ad['img']}}?imageView2/1/interlace/1/q/75"
+                             style="width: 94%;margin: auto;">
                     </div>
                     <div style="padding-top: 20px;padding-bottom: 20px;">
                         <div class="aui-row">
@@ -927,6 +929,43 @@
             window.location.href = "{{URL::asset('/vote/sendCert')}}?vote_user_id=" + vote_user_id + "&activity_id=" + activity_id;
         }
 
+
+        //点击投票弹出页面
+        function clickTPAD(ad_url, activity_id, vote_user_id) {
+            //跳转链接如果为空
+            if (judgeIsAnyNullStr(ad_url)) {
+                return;
+            }
+            var redirect_url = ad_url;
+            consoledebug.log("clickTPAD redirect_url:" + redirect_url);
+            /*
+             * 2018-12-24
+             *
+             * By TerryQi
+             *
+             * 增加了跳转大转盘营销活动页面的逻辑，从投票大赛个人页面进入的大转盘，分享应为个人参赛页面
+             */
+            window.location.href = redirect_url + "&from_page=vote_person&param1=" + vote_user_id;
+        }
+
+
+        //点击轮播图广告
+        function clickAD(ad_url, activity_id, vote_user_id) {
+            //跳转链接如果为空
+            if (judgeIsAnyNullStr(ad_url)) {
+                return;
+            }
+            var redirect_url = ad_url;
+            consoledebug.log("clickAD redirect_url:" + redirect_url);
+            /*
+             * 2018-12-24
+             *
+             * By TerryQi
+             *
+             * 增加了跳转大转盘营销活动页面的逻辑，从投票大赛个人页面进入的大转盘，分享应为个人参赛页面
+             */
+            window.location.href = redirect_url + "&from_page=vote_person&param1=" + vote_user_id;
+        }
 
     </script>
 @endsection

@@ -70,7 +70,11 @@ class MryhPageController
         //获取每天一画总共的参与用户数
         $mryh_total_user = MryhUserManager::getListByCon([], false)->count();
         //每天一画总金额
-        $mryh_total_money = MryhJoinManager::getListByCon([], false)->sum('total_fee');
+
+        $mryh_total_money = MryhGameManager::getListByCon(['status' => '1'], false)->sum('total_money')
+            + MryhGameManager::getListByCon(['status' => '1'], false)->sum('adv_price');
+
+        $mryh_total_money = round($mryh_total_money, 2);        //整体金额
 
         //如果有用户信息，则需要返回用户正在参加的大赛
         $mryhJoins = [];
@@ -146,9 +150,14 @@ class MryhPageController
         }
 
         //活动最近15个参与记录
-        $mryhJoins = MryhJoinManager::getListByCon(['game_id' => $mryhGame->id], true);
+        $mryhJoins = MryhJoinManager::getListByCon(['game_id' => $mryhGame->id, 'page_size' => 8], true);
         foreach ($mryhJoins as $mryhJoin) {
             $mryhJoin = MryhJoinManager::getInfoByLevel($mryhJoin, '1');
+            //2018-12-28增加逻辑,解决mryhJoins中有user头像为空的问题
+            if (Utils::isObjNull($mryhJoin->user->avatar)) {
+                Utils::processLog(__METHOD__, '', '解决mryhJoins中有user头像为空的问题 mryhJoin：' . json_encode($mryhJoin));
+                $mryhJoin->user->avatar = UserManager::getRandomAvatar();        //替换头像，注意此处不能保存
+            }
         }
 
         //是否有免费参与活动的资格
@@ -168,6 +177,7 @@ class MryhPageController
             'coupon' => $mryhUserCoupon,
             'other_games' => $other_mryhGames,
         );
+
         return ApiResponse::makeResponse(true, $page_data, ApiResponse::SUCCESS_CODE);
     }
 
@@ -196,9 +206,6 @@ class MryhPageController
 
         $mryhJoin = MryhJoinManager::getInfoByLevel($mryhJoin, '0');
 
-        //获取用户当日是否上传了作品的标志
-        $mryhJoin->today_already_upload_flag = MryhJoinArticleManager::isUploadAtDate($mryhJoin->user_id, $mryhJoin->id, DateTool::getToday());
-
         //获取朋友信息，二级朋友列表-分页
         $mryhFriends = MryhFriendManager::getListByConJoinGameLeve2($mryhJoin->user_id, true);
         Utils::processLog(__METHOD__, '', '二级朋友列表 mryhFriends：' . json_encode($mryhFriends));
@@ -215,7 +222,7 @@ class MryhPageController
 
         //获取其他人作品列表
         $con_arr = array(
-            'game_id' => $mryhJoin->game_id
+            'game_id' => $mryhJoin->game_id,
         );
         $other_mryhJoinArticles = MryhJoinArticleManager::getListByCon($con_arr, false);
         foreach ($other_mryhJoinArticles as $other_mryhJoinArticle) {
@@ -228,6 +235,68 @@ class MryhPageController
             'my_articles' => $my_mryhJoinArticles,
             'other_articles' => $other_mryhJoinArticles,
         );
+        return ApiResponse::makeResponse(true, $page_data, ApiResponse::SUCCESS_CODE);
+    }
+
+
+    /*
+     * 2018-12-26 获取参赛页面接口，升级-主要解决other_articles、friends、my_articles相关
+     *
+     * other_articles改为分页，好处是减少数据量，如果需要获取更多数据，则传入game_id，调用 api/mryh/joinArticle/getListByCon 接口
+     *
+     * friends参与该活动的最近15个用户
+     *
+     * my_articles改为分页，且最多输出30个作品，因为后续有每年一画，避免数据量太大，如果需要获取更多数据，则传入user_id，game_id，调用 api/mryh/joinArticle/getListByCon 接口
+     *
+     */
+    public function v2_join(Request $request)
+    {
+        $data = $request->all();
+        $requestValidationResult = RequestValidator::validator($request->all(), [
+            'id' => 'required',
+        ]);
+        if ($requestValidationResult !== true) {
+            return ApiResponse::makeResponse(false, $requestValidationResult, ApiResponse::MISSING_PARAM);
+        }
+
+        $mryhJoin = MryhJoinManager::getById($data['id']);
+        if (!$mryhJoin) {
+            return ApiResponse::makeResponse(false, "未找到活动参与记录", ApiResponse::INNER_ERROR);
+        }
+
+        $mryhJoin = MryhJoinManager::getInfoByLevel($mryhJoin, '0');
+
+        //获得朋友信息
+        $friend_user_id_arr = MryhJoinManager::getListByCon(['game_id' => $mryhJoin->game_id], true)->pluck('user_id');     //此处已经分页
+        $mryhFriends = UserManager::getListByCon(['id_arr' => $friend_user_id_arr], false);
+
+        //我的作品列表
+        $con_arr = array(
+            'join_id' => $mryhJoin->id,
+            'page_size' => 31           //做多31个作品
+        );
+        $my_mryhJoinArticles = MryhJoinArticleManager::getListByCon($con_arr, true);
+        foreach ($my_mryhJoinArticles as $mryhJoinArticle) {
+            $mryhJoinArticle = MryhJoinArticleManager::getInfoByLevel($mryhJoinArticle, '3');
+        }
+        Utils::processLog(__METHOD__, '', '我的作品信息 mryhJoinArticle：' . json_encode($my_mryhJoinArticles));
+
+        //获取其他人作品列表
+        $con_arr = array(
+            'game_id' => $mryhJoin->game_id,
+        );
+        $other_mryhJoinArticles = MryhJoinArticleManager::getListByCon($con_arr, true);
+        foreach ($other_mryhJoinArticles as $other_mryhJoinArticle) {
+            $other_mryhJoinArticle = MryhJoinArticleManager::getInfoByLevel($other_mryhJoinArticle, '13');
+        }
+        Utils::processLog(__METHOD__, '', '其他人的作品信息 other_mryhJoinArticles：' . json_encode($other_mryhJoinArticles));
+        $page_data = array(
+            'join' => $mryhJoin,
+            'friends' => $mryhFriends,
+            'my_articles' => $my_mryhJoinArticles,
+            'other_articles' => $other_mryhJoinArticles,
+        );
+
         return ApiResponse::makeResponse(true, $page_data, ApiResponse::SUCCESS_CODE);
     }
 

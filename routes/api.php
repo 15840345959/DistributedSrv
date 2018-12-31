@@ -24,6 +24,8 @@ Route::group(['prefix' => '', 'middleware' => ['BeforeRequest', 'cors']], functi
     Route::get('test/vote/sendCertSchedule', 'API\TestController@sendCertSchedule');       //发送证书-计划任务
     Route::post('/test/wxConfig', 'Test\TestController@wxConfig');        //获取微信公众号wxconfig信息
 
+    Route::get('test/uploadAvater', 'API\TestController@uploadAvater');       //上传头像
+
     //获取七牛token
     Route::get('user/getQiniuToken', 'API\UserController@getQiniuToken');
 
@@ -144,7 +146,12 @@ Route::group(['prefix' => 'mryh', 'middleware' => ['BeforeRequest', 'cors']], fu
     //页面整体封装
     Route::get('page/index', 'API\MRYHXCX\MryhPageController@index');           //首页接口
     Route::get('page/game/getById', 'API\MRYHXCX\MryhPageController@game');               //活动页面接口
+
     Route::get('page/join/getById', 'API\MRYHXCX\MryhPageController@join');               //活动参与页面接口
+    //2018-12-26进行接口优化
+    Route::get('page/v2/join/getById', 'API\MRYHXCX\MryhPageController@v2_join');               //活动参与页面接口
+
+
     Route::get('page/my', 'API\MRYHXCX\MryhPageController@my')->middleware('user.checkToken');               //我的页面
     Route::get('page/person', 'API\MRYHXCX\MryhPageController@person');               //用户页面
 
@@ -160,6 +167,8 @@ Route::group(['prefix' => 'mryh', 'middleware' => ['BeforeRequest', 'cors']], fu
     Route::get('game/getListByCon', 'API\MRYHXCX\MryhGameController@getListByCon');   //根据条件获取列表
     Route::post('game/join/payOrder', 'API\MRYHXCX\MryhJoinOrderController@payOrder')->middleware('user.checkToken');   //参加互动下单下单
     Route::post('game/join/joinByCoupon', 'API\MRYHXCX\MryhJoinController@joinByCoupon')->middleware('user.checkToken');   //通过优惠券参加活动
+    Route::post('game/join/joinByFree', 'API\MRYHXCX\MryhJoinController@joinByFree')->middleware('user.checkToken');   //免费参与活动
+
     Route::get('game/isUserJoin', 'API\MRYHXCX\MryhGameController@isUserJoin');   //用户是否参与活动
     Route::get('game/getShareInfo', 'API\MRYHXCX\MryhGameController@getShareInfo');   //获取活动的分享信息
 
@@ -188,8 +197,8 @@ Route::group(['prefix' => 'mryh', 'middleware' => ['BeforeRequest', 'cors']], fu
     Route::get('withdraw/getById', 'API\MRYHXCX\MryhWithdrawCashController@getById')->middleware('user.checkToken');   //根据id获取提现信息详情
 
     //获取分享海报
-    Route::any('pic/share', 'API\MRYHXCX\MryhPicController@share');   //获取分享海报
-    Route::any('pic/shareGame', 'API\MRYHXCX\MryhPicController@shareGame');  //分享活动
+    Route::post('pic/share', 'API\MRYHXCX\MryhPicController@share');   //获取分享海报
+    Route::post('pic/shareGame', 'API\MRYHXCX\MryhPicController@shareGame');  //分享活动
 
     //生成证书-测试用
     Route::post('pic/cert', 'API\MRYHXCX\MryhPicController@cert');   //测试证书

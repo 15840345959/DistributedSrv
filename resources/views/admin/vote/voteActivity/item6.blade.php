@@ -148,6 +148,19 @@
                    value="{{ isset($data->sel_tp_ad_ids) ? $data->sel_tp_ad_ids : '' }}" placeholder="请输入投票后弹出屏广告id">
         </div>
     </div>
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2">弹出屏广告跳转链接：</label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <input id="sel_tp_ad_url" name="sel_tp_ad_url" type="text" class="input-text"
+                   value="{{ isset($data->sel_tp_ad_url) ? $data->sel_tp_ad_url : '' }}" placeholder="请输入投票后弹出屏广告的跳转链接">
+        </div>
+    </div>
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2"></label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <span class="c-danger">*现阶段投票链接跳转大转盘活动，该url在营销活动管理中查询。</span>
+        </div>
+    </div>
     {{--如果已经选中广告--}}
     @if($data->sel_tp_ads)
         <div class="row cl">

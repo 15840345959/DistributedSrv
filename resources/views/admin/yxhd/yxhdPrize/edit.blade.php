@@ -15,8 +15,14 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>奖品名称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input id="name" name="name" type="text" class="input-text"
+                    <input id="name" name="name" type="text" class="input-text" style="width: 500px;"
                            value="{{ isset($data->name) ? $data->name : '' }}" placeholder="奖品名称">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"></label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <span class="c-danger">*奖品名称中如果带“元”字将进行换行（例如800元设计券），如果带卡字，将增加图标（例如锦鲤卡）</span>
                 </div>
             </div>
             <div class="row cl">

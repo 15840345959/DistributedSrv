@@ -135,9 +135,6 @@ class ScoreRecordManager
             }
         }
         $user = UserManager::getByIdWithToken($data['user_id']);        //此处一定注意需要带token，否则会导致用户丢失的问题
-        if ($user->score < $data['score']) {
-            return null;
-        }
         //扣减积分///////////////////////////////////////////////////////////
         //此处在并发量大的情况下可能存在逻辑错误
         if ($data['opt'] == '0') {

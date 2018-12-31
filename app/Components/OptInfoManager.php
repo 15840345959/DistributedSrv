@@ -61,6 +61,8 @@ class OptInfoManager
      */
     public static function getInfoByLevel($info, $level)
     {
+        $info->f_table_str = Utils::OPT_F_TABLE_VAL[$info->f_table];
+
         return $info;
     }
 

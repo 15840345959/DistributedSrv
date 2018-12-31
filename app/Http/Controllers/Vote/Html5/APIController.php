@@ -14,6 +14,7 @@ use App\Components\AdminManager;
 use App\Components\BusiWordManager;
 use App\Components\DateTool;
 use App\Components\LoginManager;
+use App\Components\ScoreRecordManager;
 use App\Components\SMSManager;
 use App\Components\UserManager;
 use App\Components\Vote\VoteActivityManager;
@@ -166,6 +167,16 @@ class APIController
         //数据统计
         VoteActivityManager::addStatistics($activity->id, 'vote_num', 1);       //大赛投票数增加
         VoteUserManager::addStatistics($data['vote_user_id'], 'vote_num', 1);      //选手投票数增加
+
+        //增加积分
+        $scoreChange = array(
+            'user_id' => $vote_record->user_id,
+            'score' => Utils::YXHD_VOTE_ADD_SCORE_VAL,
+            'opt' => '1',
+            'remark' => '投票大赛投票奖励积分'
+        );
+        Utils::processLog(__METHOD__, '', "增加积分 scoreChange " . json_encode($scoreChange));
+        ScoreRecordManager::change($scoreChange);
 
         return ApiResponse::makeResponse(true, $vote_record, ApiResponse::SUCCESS_CODE);
     }

@@ -73,6 +73,9 @@
                             <span class="label label-danger">{{$vote_user->audit_status_str}}</span>
                         @endif
                     </div>
+                    <div class="mt-5">
+                        录入时间：<span class="">{{$vote_user->created_at}}</span>
+                    </div>
                 </td>
                 <td>
                     <div class="mt-5">

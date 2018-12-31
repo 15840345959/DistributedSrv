@@ -38,8 +38,10 @@
                 <div class="formControls col-xs-8 col-sm-9">
                      <span class="select-box" style="width: 250px;">
                         <select id="f_table" name="f_table" class="select" size="1">
-                            <option value="order" {{$data->f_table == "order"? "selected":""}}>订单操作</option>
-                            <option value="activity" {{$data->f_table == "activity"? "selected":""}}>活动操作</option>
+                            <option value="" {{$data->f_table == "" ? 'selected':''}}>请选择</option>
+                            @foreach(\App\Components\Utils::OPT_F_TABLE_VAL as $key=>$value)
+                                <option value="{{$key}}" {{$data->f_table==strval($key)?'selected':''}}>{{$value}}</option>
+                            @endforeach
                         </select>
                     </span>
                 </div>

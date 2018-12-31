@@ -42,6 +42,27 @@
         </div>
     </div>
     <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>预设奖金：</label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <input id="adv_price" name="adv_price" type="number" class="input-text"
+                   style="width: 150px;"
+                   value="{{ isset($data->adv_price) ? $data->adv_price : '' }}" placeholder="请输入预设奖金"
+                    {{$data->game_status=='2'?'disabled':''}}>
+            <span>元</span>
+            <span class="ml-10 c-primary" style="cursor: pointer;"
+                  onclick="editAdvPrice('预设活动奖金','{{URL::asset('/admin/mryh/mryhGame/editAdvPrice')}}?id={{$data->id}}');">设置预设奖金</span>
+        </div>
+    </div>
+    <div class="row cl item c-999">
+        <label class="form-label col-xs-4 col-sm-2"></label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <div>
+                <span>预设奖金是为了引导用户参加大赛，预设入活动的奖金，奖金可以修改，目前关联阿伟的手机号（18624327300），修改时需要输入验证码。</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row cl">
         <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>参赛密码：</label>
         <div class="formControls col-xs-8 col-sm-9">
             <input id="password" name="password" type="text" class="input-text"
@@ -70,22 +91,6 @@
         <div class="formControls col-xs-8 col-sm-9">
             <div>
                 <span>值越大越靠前</span>
-            </div>
-        </div>
-    </div>
-    <div class="row cl">
-        <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>预置奖金：</label>
-        <div class="formControls col-xs-8 col-sm-9">
-            <input id="adv_price" name="adv_price" type="number" class="input-text"
-                   style="width: 150px;"
-                   value="{{ isset($data->adv_price) ? $data->adv_price : '0' }}" placeholder="值越大越靠前" disabled="">
-        </div>
-    </div>
-    <div class="row cl item c-999">
-        <label class="form-label col-xs-4 col-sm-2"></label>
-        <div class="formControls col-xs-8 col-sm-9">
-            <div>
-                <span class="c-danger">预置奖金是为了解决活动初期奖金池太少问题而设置的，预置奖金请联系技术人员从后台进行设置，暂时不开放给运营人员，例如一个活动预置500元奖励，那么在分润时，将计算该奖励。</span>
             </div>
         </div>
     </div>
@@ -229,6 +234,18 @@
                 }
             }
         });
+    }
+
+    //预置活动奖金
+    function editAdvPrice(title, url, id) {
+        console.log("editAdvPrice url:" + url);
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        console.log(index);
+        layer.full(index);
     }
 
 </script>

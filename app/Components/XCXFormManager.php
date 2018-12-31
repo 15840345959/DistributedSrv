@@ -66,6 +66,29 @@ class XCXFormManager
     }
 
     /*
+     * 根据级别获取信息
+     *
+     * By TerryQi
+     *
+     * 2018-12-30
+     *
+     * 0带用户信息
+     */
+    public static function getInfoByLevel($info, $level)
+    {
+        $info->used_flag_str = Utils::XCX_FORM_USED_FLAG_VAL[$info->used_flag];
+        $info->busi_name_str = Utils::BUSI_NAME_VAL[$info->busi_name];
+
+        //0带用户信息
+        if (strpos($level, '0') !== false) {
+            $info->user = UserManager::getById($info->user_id);
+        }
+
+        return $info;
+    }
+
+
+    /*
      * 配置信息
      *
      * By TerryQi
@@ -88,6 +111,12 @@ class XCXFormManager
         }
         if (array_key_exists('f_id', $data)) {
             $info->f_id = array_get($data, 'f_id');
+        }
+        if (array_key_exists('total_num', $data)) {
+            $info->total_num = array_get($data, 'total_num');
+        }
+        if (array_key_exists('used_num', $data)) {
+            $info->used_num = array_get($data, 'used_num');
         }
         if (array_key_exists('used_flag', $data)) {
             $info->used_flag = array_get($data, 'used_flag');

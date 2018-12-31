@@ -56,6 +56,9 @@ class MryhGameManager
         $info->jiesuan_status_str = Utils::MRYH_GAME_JIESUAN_STATUS_VAL[$info->jiesuan_status];
         $info->creator_type_str = Utils::MRYH_GAME_CREATOR_TYPE_VAL[$info->creator_type];
 
+        //2018-12-18新增需求，即活动是否免费，如果join_price==0，代表活动可以免费参与，如果可以免费参与，则is_free=true，否则is_free=false
+        $info->is_free = ($info->join_price <= 0.001) ? true : false;
+
         //2018年12月2日，为解决活动开始时奖金池太少的问题，可以由公司投入奖金
         /*
          * By TerryQi

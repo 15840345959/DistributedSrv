@@ -267,6 +267,7 @@ class MryhOverviewController
         //每日新增订单金额
         $new_mryhJoinOrders = MryhJoinOrder::whereDate('created_at', '>=', $start_at)
             ->whereDate('created_at', '<=', $end_at)
+            ->where('pay_status', '=', '1')
             ->groupBy('date')
             ->get([
                 DB::raw('DATE(created_at) as date'),

@@ -100,6 +100,9 @@
                                     <span class="label label-danger">{{$data->audit_status_str}}</span>
                                 @endif
                             </div>
+                            <div class="mt-5">
+                                录入时间：<span class="">{{$data->created_at}}</span>
+                            </div>
                         </td>
                         <td>
                             <div class="mt-5">

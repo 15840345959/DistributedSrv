@@ -27,4 +27,25 @@ class QNManager
         $token = $disk->getUploadToken();
         return $token;
     }
+
+    /*
+     * 上传文件
+     *
+     * By TerryQi
+     *
+     * 2018-12-26
+     *
+     * @return 如果上传成功返回七牛url，否则返回null
+     */
+    public static function upload($path, $fileContent)
+    {
+        $disk = Storage::disk('qiniu');
+        $result = $disk->put($path, $fileContent);
+        if ($result) {
+            return env("QINIU_DOMAIN") . "/" . $path;
+        } else {
+            return null;
+        }
+    }
+
 }

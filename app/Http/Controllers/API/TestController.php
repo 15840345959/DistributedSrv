@@ -12,12 +12,15 @@ use App\Components\DateTool;
 use App\Components\GZH\WeChatManager;
 use App\Components\MapManager;
 use App\Components\TestManager;
+use App\Components\UserAvaterManager;
+use App\Components\UserManager;
 use App\Components\Utils;
 use App\Components\Vote\VoteActivityManager;
 use App\Components\Vote\VoteCertSendManager;
 use App\Components\Vote\VoteUserManager;
 use App\Http\Controllers\ApiResponse;
 use App\Http\Controllers\Controller;
+use App\User;
 use EasyWeChat\Kernel\Messages\Image;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
@@ -165,17 +168,17 @@ class TestController extends Controller
             Utils::processLog(__METHOD__, '', " " . "获得奖励信息 prize:" . $prize);
             //没有获得奖励
             if ($prize == null) {
-                Utils::processLog(__METHOD__, '',  "非常感谢您参加" . $vote_activity->name . "，很遗憾您没有获得奖项，如有疑问请联系大赛组委会。");
+                Utils::processLog(__METHOD__, '', "非常感谢您参加" . $vote_activity->name . "，很遗憾您没有获得奖项，如有疑问请联系大赛组委会。");
                 return "非常感谢您参加" . $vote_activity->name . "，很遗憾您没有获得奖项，如有疑问请联系大赛组委会。";
             } else {
                 //获得奖励，则返回证书
                 /*
                  * By TerryQi
                  */
-                Utils::processLog(__METHOD__, '',  "activity code:" . $vote_activity->code);
-                Utils::processLog(__METHOD__, '',   "vote user code:" . $vote_user->code);
+                Utils::processLog(__METHOD__, '', "activity code:" . $vote_activity->code);
+                Utils::processLog(__METHOD__, '', "vote user code:" . $vote_user->code);
                 $cert_no = $vote_activity->code . '-' . $vote_user->code;        //证书编号
-                Utils::processLog(__METHOD__, '',   "证书编号 cert_no:" . json_encode($cert_no));
+                Utils::processLog(__METHOD__, '', "证书编号 cert_no:" . json_encode($cert_no));
                 $info_arr = [
                     'name' => VoteUserManager::getVoteUserName($vote_user->name),
                     'prize' => $prize,
@@ -256,6 +259,17 @@ class TestController extends Controller
         VoteCertSendManager::voteCertSendSchedule();
 
         return ApiResponse::makeResponse(true, "证书生成成功", ApiResponse::SUCCESS_CODE);
+    }
+
+    //进行头像处理
+    public function uploadAvater(Request $request)
+    {
+        $data = $request->all();
+        $user = UserManager::getById($data['user_id']);
+//        dd($user);
+        $is_avatarFromWX = UserAvaterManager::isAvaterFromWX($user->avatar);
+        $user = UserAvaterManager::setAvaterToQN($user->id);
+        return ApiResponse::makeResponse(true, $user, ApiResponse::SUCCESS_CODE);
     }
 
 }

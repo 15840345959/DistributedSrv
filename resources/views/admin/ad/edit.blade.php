@@ -61,11 +61,11 @@
                     <div style="font-size: 12px;margin-top: 10px;" class="text-gray">*请上传600*300尺寸图片
                     </div>
                 </div>
-                <div class="row cl" style="padding-top: 20px;">
-                    <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                        <input class="btn btn-primary radius" type="submit" value="保存广告图">
-                        <button onClick="layer_close();" class="btn btn-default radius" type="button">取消</button>
-                    </div>
+            </div>
+            <div class="row cl" style="padding-top: 20px;">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                    <input class="btn btn-primary radius" type="submit" value="保存广告图">
+                    <button onClick="layer_close();" class="btn btn-default radius" type="button">取消</button>
                 </div>
             </div>
         </form>

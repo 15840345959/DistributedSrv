@@ -17,6 +17,9 @@ class Utils
     //分页配置
     const PAGE_SIZE = 15;
 
+    //超级管理员电话
+    const SUPER_ADMIN_PHONENUM = "18624327300";        //用于接收管理后天验证码
+
     //测试主机和生产主机URL地址
     const PRODUCT_SERVER_URL = 'http://art.syatc.cn/';
 
@@ -44,6 +47,9 @@ class Utils
     const SHOP_SMS_TEMPLATE_PAYORDER = "905649492";   //下单提醒-对管理员
     const SHOP_SMS_TEMPLATE_SENDGOODS = "905652097"; //发货通知-对客户
     const SHOP_SMS_TEMPLATE_REFUND = "915362984";     //退款提醒-对客户
+
+    //每日一画
+    const SUPER_ADMIN_VERTIFY_CODE = "1105336651";       //下发短信验证码
 
     //短信模板//////////////////////////////////////////////////////////////////////////////
 
@@ -126,6 +132,10 @@ class Utils
     const ACCOUNT_TYPE_XCX = "xcx";     //小程序
     const ACCOUNT_TYPE_FWH = "fwh";     //公众号
 
+    //小程序form表单相关
+    const XCX_FORM_USED_FLAG_VAL = ['0' => '未用光', '1' => '已用光'];
+
+
     //登录账号
     const ACCOUNT_TYPE_VAL = ['xcx' => '小程序', 'fwh' => '公众号', 'tel_passwd' => '手机号密码', '手机号随机码' => 'tel_code'];
 
@@ -184,6 +194,7 @@ class Utils
     const F_TABLE_MRYH_GAME = 'mryh_game';
 
     const F_TABLE_YXHD_ORDER = 'yxhd_order_info';
+    const F_TABLE_YXHD_ACTIVITY = 'yxhd_activity_info';
 
 
     const F_TABLE_ARTICLE_VAL = [self::F_TABLB_ARTICLE => '作品', self::F_TABLB_GOODS => '商品'
@@ -192,6 +203,9 @@ class Utils
 
     //关联关系级别
     const USER_REL_LEVEL_VAL = ['0' => '新用户', '1' => '促活'];
+
+
+    const OPT_F_TABLE_VAL = ['order' => '通用订单', 'activity' => '活动相关', 'mryh_game' => '每日一画活动'];
 
     // 操作值定义
     const OPT_FINISHED = "FINISHED";        //已完成
@@ -364,7 +378,304 @@ class Utils
     const YXHD_ORDER_WINNING_STATUS_VAL = ['0' => '未中奖', '1' => '已中奖'];
 
 
+    //投票大赛获得积分的规则
+    const YXHD_VOTE_ADD_SCORE_VAL = 10;       //投票大赛营销活动进行积分增加 10积分
+    const YXHD_ORDER_MULTI_SCORE_VAL = 5;     //投票大赛影戏小活动进行积分增加 为5*打赏金额 积分
+
+
     ////////////////////////////////////////////////////////////////
+    ///
+    /// 随机头像
+    ///
+    ///
+    const AVATAR_ARR = ["http://twst.isart.me/avatar/20181228975497986334.png",
+        "http://twst.isart.me/avatar/20181228999849491952.png",
+        "http://twst.isart.me/avatar/20181228514955485596.png",
+        "http://twst.isart.me/avatar/20181228565255104128.png",
+        "http://twst.isart.me/avatar/20181228549951512851.png",
+        "http://twst.isart.me/avatar/20181228101509857390.png",
+        "http://twst.isart.me/avatar/20181228995548578747.png",
+        "http://twst.isart.me/avatar/20181228100559855801.png",
+        "http://twst.isart.me/avatar/20181228101491000423.png",
+        "http://twst.isart.me/avatar/20181228984952100085.png",
+        "http://twst.isart.me/avatar/20181228569753106779.png",
+        "http://twst.isart.me/avatar/20181228564854995466.png",
+        "http://twst.isart.me/avatar/20181228555252505399.png",
+        "http://twst.isart.me/avatar/20181228541005457981.png",
+        "http://twst.isart.me/avatar/20181228494948489163.png",
+        "http://twst.isart.me/avatar/20181228574957559963.png",
+        "http://twst.isart.me/avatar/20181228565510150753.png",
+        "http://twst.isart.me/avatar/20181228985748544483.png",
+        "http://twst.isart.me/avatar/20181228489851520201.png",
+        "http://twst.isart.me/avatar/20181228102485554130.png",
+        "http://twst.isart.me/avatar/20181228100101983527.png",
+        "http://twst.isart.me/avatar/20181228100491022496.png",
+        "http://twst.isart.me/avatar/20181228995355548900.png",
+        "http://twst.isart.me/avatar/20181228102985246465.png",
+        "http://twst.isart.me/avatar/20181228985256578731.png",
+        "http://twst.isart.me/avatar/20181228971014954111.png",
+        "http://twst.isart.me/avatar/20181228102100494621.png",
+        "http://twst.isart.me/avatar/20181228101495359509.png",
+        "http://twst.isart.me/avatar/20181228565150563294.png",
+        "http://twst.isart.me/avatar/20181228575197502148.png",
+        "http://twst.isart.me/avatar/20181228535653102397.png",
+        "http://twst.isart.me/avatar/20181228489999549460.png",
+        "http://twst.isart.me/avatar/20181228995254536938.png",
+        "http://twst.isart.me/avatar/20181228571005590292.png",
+        "http://twst.isart.me/avatar/20181228531015256059.png",
+        "http://twst.isart.me/avatar/20181228521005759946.png",
+        "http://twst.isart.me/avatar/20181228559752977517.png",
+        "http://twst.isart.me/avatar/20181228515351552878.png",
+        "http://twst.isart.me/avatar/20181228489957528090.png",
+        "http://twst.isart.me/avatar/20181228545310255176.png",
+        "http://twst.isart.me/avatar/20181228515710296413.png",
+        "http://twst.isart.me/avatar/20181228535649547256.png",
+        "http://twst.isart.me/avatar/20181228102545294531.png",
+        "http://twst.isart.me/avatar/20181228101995694048.png",
+        "http://twst.isart.me/avatar/20181228991024898612.png",
+        "http://twst.isart.me/avatar/20181228995498106387.png",
+        "http://twst.isart.me/avatar/20181228989798578355.png",
+        "http://twst.isart.me/avatar/20181228539950104934.png",
+        "http://twst.isart.me/avatar/20181228101505352668.png",
+        "http://twst.isart.me/avatar/20181228575349538737.png",
+        "http://twst.isart.me/avatar/20181228529950564699.png",
+        "http://twst.isart.me/avatar/20181228511001027320.png",
+        "http://twst.isart.me/avatar/20181228100485357036.png",
+        "http://twst.isart.me/avatar/20181228575549513185.png",
+        "http://twst.isart.me/avatar/20181228505054489605.png",
+        "http://twst.isart.me/avatar/20181228991005450545.png",
+        "http://twst.isart.me/avatar/20181228524950571907.png",
+        "http://twst.isart.me/avatar/20181228984956988305.png",
+        "http://twst.isart.me/avatar/20181228559910154589.png",
+        "http://twst.isart.me/avatar/20181228505652977632.png",
+        "http://twst.isart.me/avatar/20181228979798984089.png",
+        "http://twst.isart.me/avatar/20181228102975556035.png",
+        "http://twst.isart.me/avatar/20181228999755578077.png",
+        "http://twst.isart.me/avatar/20181228975410051580.png",
+        "http://twst.isart.me/avatar/20181228555650492440.png",
+        "http://twst.isart.me/avatar/20181228102489856066.png",
+        "http://twst.isart.me/avatar/20181228531009859127.png",
+        "http://twst.isart.me/avatar/20181228985255544813.png",
+        "http://twst.isart.me/avatar/20181228531019756353.png",
+        "http://twst.isart.me/avatar/20181228535256538429.png",
+        "http://twst.isart.me/avatar/20181228984954548615.png",
+        "http://twst.isart.me/avatar/20181228575210190448.png",
+        "http://twst.isart.me/avatar/20181228561005319613.png",
+        "http://twst.isart.me/avatar/20181228989910019464.png",
+        "http://twst.isart.me/avatar/20181228565051555672.png",
+        "http://twst.isart.me/avatar/20181228101544818579.png",
+        "http://twst.isart.me/avatar/20181228100985451750.png",
+        "http://twst.isart.me/avatar/20181228559749108340.png",
+        "http://twst.isart.me/avatar/20181228102100547128.png",
+        "http://twst.isart.me/avatar/20181228999750484101.png",
+        "http://twst.isart.me/avatar/20181228525210053175.png",
+        "http://twst.isart.me/avatar/20181228995650523704.png",
+        "http://twst.isart.me/avatar/20181228974948978838.png",
+        "http://twst.isart.me/avatar/20181228565548528840.png",
+        "http://twst.isart.me/avatar/20181228999810250717.png",
+        "http://twst.isart.me/avatar/20181228571001029045.png",
+        "http://twst.isart.me/avatar/20181228555353102395.png",
+        "http://twst.isart.me/avatar/20181228549753992220.png",
+        "http://twst.isart.me/avatar/20181228525298535259.png",
+        "http://twst.isart.me/avatar/20181228102579950872.png",
+        "http://twst.isart.me/avatar/20181228984949986560.png",
+        "http://twst.isart.me/avatar/20181228495351103366.png",
+        "http://twst.isart.me/avatar/20181228985549534837.png",
+        "http://twst.isart.me/avatar/20181228101545117929.png",
+        "http://twst.isart.me/avatar/20181228971015219040.png",
+        "http://twst.isart.me/avatar/20181228565299575299.png",
+        "http://twst.isart.me/avatar/20181228535210050518.png",
+        "http://twst.isart.me/avatar/20181228975355101638.png",
+        "http://twst.isart.me/avatar/20181228505056109089.png",
+        "http://twst.isart.me/avatar/20181228971024959279.png",
+        "http://twst.isart.me/avatar/20181228984848517879.png",
+        "http://twst.isart.me/avatar/20181228575197519835.png",
+        "http://twst.isart.me/avatar/20181228565051571219.png",
+        "http://twst.isart.me/avatar/20181228555554101640.png",
+        "http://twst.isart.me/avatar/20181228489897570691.png",
+        "http://twst.isart.me/avatar/20181228101541020487.png",
+        "http://twst.isart.me/avatar/20181228574898991488.png",
+        "http://twst.isart.me/avatar/20181228545349510538.png",
+        "http://twst.isart.me/avatar/20181228535055982249.png",
+        "http://twst.isart.me/avatar/20181228511005046680.png",
+        "http://twst.isart.me/avatar/20181228505455561368.png",
+        "http://twst.isart.me/avatar/20181228499998500340.png",
+        "http://twst.isart.me/avatar/20181228541011022805.png",
+        "http://twst.isart.me/avatar/20181228529898108232.png",
+        "http://twst.isart.me/avatar/20181228481004959539.png",
+        "http://twst.isart.me/avatar/20181228102524892586.png",
+        "http://twst.isart.me/avatar/20181228575552104772.png",
+        "http://twst.isart.me/avatar/20181228575051554155.png",
+        "http://twst.isart.me/avatar/20181228565352986629.png",
+        "http://twst.isart.me/avatar/20181228519755107255.png",
+        "http://twst.isart.me/avatar/20181228515252507264.png",
+        "http://twst.isart.me/avatar/20181228975357106725.png",
+        "http://twst.isart.me/avatar/20181228525010294147.png",
+        "http://twst.isart.me/avatar/20181228495410218872.png",
+        "http://twst.isart.me/avatar/20181228561019792848.png",
+        "http://twst.isart.me/avatar/20181228549810093229.png",
+        "http://twst.isart.me/avatar/20181228101535350440.png",
+        "http://twst.isart.me/avatar/20181228985348527988.png",
+        "http://twst.isart.me/avatar/20181228539898522638.png",
+        "http://twst.isart.me/avatar/20181228535049515238.png",
+        "http://twst.isart.me/avatar/20181228525755108564.png",
+        "http://twst.isart.me/avatar/20181228509850995507.png",
+        "http://twst.isart.me/avatar/20181228494957991147.png",
+        "http://twst.isart.me/avatar/20181228100569752604.png",
+        "http://twst.isart.me/avatar/20181228575257510319.png",
+        "http://twst.isart.me/avatar/20181228535198521109.png",
+        "http://twst.isart.me/avatar/20181228515610159306.png",
+        "http://twst.isart.me/avatar/20181228501009857177.png",
+        "http://twst.isart.me/avatar/20181228485098548947.png",
+        "http://twst.isart.me/avatar/20181228975210012606.png",
+        "http://twst.isart.me/avatar/20181228491015254011.png",
+        "http://twst.isart.me/avatar/20181228101985095507.png",
+        "http://twst.isart.me/avatar/20181228511015258907.png",
+        "http://twst.isart.me/avatar/20181228499750992437.png",
+        "http://twst.isart.me/avatar/20181228494853106358.png",
+        "http://twst.isart.me/avatar/20181228485652100970.png",
+        "http://twst.isart.me/avatar/20181228569710157783.png",
+        "http://twst.isart.me/avatar/20181228101519959783.png",
+        "http://twst.isart.me/avatar/20181228100549917533.png",
+        "http://twst.isart.me/avatar/20181228545454987033.png",
+        "http://twst.isart.me/avatar/20181228499857561593.png",
+        "http://twst.isart.me/avatar/20181228985256482959.png",
+        "http://twst.isart.me/avatar/20181228975599531646.png",
+        "http://twst.isart.me/avatar/20181228565553549256.png",
+        "http://twst.isart.me/avatar/20181228515257572974.png",
+        "http://twst.isart.me/avatar/20181228575354108981.png",
+        "http://twst.isart.me/avatar/20181228534954534468.png",
+        "http://twst.isart.me/avatar/20181228515450559625.png",
+        "http://twst.isart.me/avatar/20181228101571011611.png",
+        "http://twst.isart.me/avatar/20181228569810053935.png",
+        "http://twst.isart.me/avatar/20181228555599990668.png",
+        "http://twst.isart.me/avatar/20181228549854501315.png",
+        "http://twst.isart.me/avatar/20181228505610256997.png",
+        "http://twst.isart.me/avatar/20181228100555613900.png",
+        "http://twst.isart.me/avatar/20181228574852547881.png",
+        "http://twst.isart.me/avatar/20181228481011024280.png",
+        "http://twst.isart.me/avatar/20181228981011014167.png",
+        "http://twst.isart.me/avatar/20181228985352986972.png",
+        "http://twst.isart.me/avatar/20181228101555050052.png",
+        "http://twst.isart.me/avatar/20181228100525259728.png",
+        "http://twst.isart.me/avatar/20181228575410297505.png",
+        "http://twst.isart.me/avatar/20181228494997551618.png",
+        "http://twst.isart.me/avatar/20181228100985591434.png",
+        "http://twst.isart.me/avatar/20181228979749542997.png",
+        "http://twst.isart.me/avatar/20181228544849984756.png",
+        "http://twst.isart.me/avatar/20181228101999743278.png",
+        "http://twst.isart.me/avatar/20181228985655101924.png",
+        "http://twst.isart.me/avatar/20181228485310054786.png",
+        "http://twst.isart.me/avatar/20181228102101482677.png",
+        "http://twst.isart.me/avatar/20181228101555045950.png",
+        "http://twst.isart.me/avatar/20181228999852520351.png",
+        "http://twst.isart.me/avatar/20181228579857100183.png",
+        "http://twst.isart.me/avatar/20181228509953106730.png",
+        "http://twst.isart.me/avatar/20181228974956975542.png",
+        "http://twst.isart.me/avatar/20181228569849483609.png",
+        "http://twst.isart.me/avatar/20181228525610059563.png",
+        "http://twst.isart.me/avatar/20181228579755539074.png",
+        "http://twst.isart.me/avatar/20181228981005098308.png",
+        "http://twst.isart.me/avatar/20181228975254566938.png",
+        "http://twst.isart.me/avatar/20181228499857536175.png",
+        "http://twst.isart.me/avatar/20181228995355571953.png",
+        "http://twst.isart.me/avatar/20181228985552534501.png",
+        "http://twst.isart.me/avatar/20181228571025245695.png",
+        "http://twst.isart.me/avatar/20181228561015096811.png",
+        "http://twst.isart.me/avatar/20181228555351973366.png",
+        "http://twst.isart.me/avatar/20181228485799517104.png",
+        "http://twst.isart.me/avatar/20181228101531025176.png",
+        "http://twst.isart.me/avatar/20181228544810059424.png",
+        "http://twst.isart.me/avatar/20181228491005658465.png",
+        "http://twst.isart.me/avatar/20181228485099104113.png",
+        "http://twst.isart.me/avatar/20181228985454539180.png",
+        "http://twst.isart.me/avatar/20181228995052562815.png",
+        "http://twst.isart.me/avatar/20181228975450985039.png",
+        "http://twst.isart.me/avatar/20181228574898516240.png",
+        "http://twst.isart.me/avatar/20181228485451521165.png",
+        "http://twst.isart.me/avatar/20181228985156483988.png",
+        "http://twst.isart.me/avatar/20181228575555100835.png",
+        "http://twst.isart.me/avatar/20181228515498532846.png",
+        "http://twst.isart.me/avatar/20181228545156537230.png",
+        "http://twst.isart.me/avatar/20181228515450989437.png",
+        "http://twst.isart.me/avatar/20181228505710093093.png",
+        "http://twst.isart.me/avatar/20181228535052528502.png",
+        "http://twst.isart.me/avatar/20181228541025153080.png",
+        "http://twst.isart.me/avatar/20181228549855549939.png",
+        "http://twst.isart.me/avatar/20181228515797997051.png",
+        "http://twst.isart.me/avatar/20181228495249480405.png",
+        "http://twst.isart.me/avatar/20181228561005191968.png",
+        "http://twst.isart.me/avatar/20181228985497511813.png",
+        "http://twst.isart.me/avatar/20181228544948538360.png",
+        "http://twst.isart.me/avatar/20181228495010158490.png",
+        "http://twst.isart.me/avatar/20181228991009955938.png",
+        "http://twst.isart.me/avatar/20181228575552509089.png",
+        "http://twst.isart.me/avatar/20181228574953511465.png",
+        "http://twst.isart.me/avatar/20181228535648557900.png",
+        "http://twst.isart.me/avatar/20181228485310049925.png",
+        "http://twst.isart.me/avatar/20181228989710010147.png",
+        "http://twst.isart.me/avatar/20181228545752107328.png",
+        "http://twst.isart.me/avatar/20181228545553550934.png",
+        "http://twst.isart.me/avatar/20181228101574958023.png",
+        "http://twst.isart.me/avatar/20181228974810219408.png",
+        "http://twst.isart.me/avatar/20181228985455105794.png",
+        "http://twst.isart.me/avatar/20181228545510148330.png",
+        "http://twst.isart.me/avatar/20181228101555492084.png",
+        "http://twst.isart.me/avatar/20181228505052996693.png",
+        "http://twst.isart.me/avatar/20181228499748978312.png",
+        "http://twst.isart.me/avatar/20181228102559813344.png",
+        "http://twst.isart.me/avatar/20181228100505293082.png",
+        "http://twst.isart.me/avatar/20181228575251979992.png",
+        "http://twst.isart.me/avatar/20181228991014858187.png",
+        "http://twst.isart.me/avatar/20181228525797982024.png",
+        "http://twst.isart.me/avatar/20181228481014850467.png",
+        "http://twst.isart.me/avatar/20181228985353997076.png",
+        "http://twst.isart.me/avatar/20181228561009850615.png",
+        "http://twst.isart.me/avatar/20181228525449981198.png",
+        "http://twst.isart.me/avatar/20181228101545353115.png",
+        "http://twst.isart.me/avatar/20181228984997567119.png",
+        "http://twst.isart.me/avatar/20181228975749102628.png",
+        "http://twst.isart.me/avatar/20181228505353554067.png",
+        "http://twst.isart.me/avatar/20181228102575114233.png",
+        "http://twst.isart.me/avatar/20181228985151997085.png",
+        "http://twst.isart.me/avatar/20181228559910242976.png",
+        "http://twst.isart.me/avatar/20181228555010050479.png",
+        "http://twst.isart.me/avatar/20181228975756553400.png",
+        "http://twst.isart.me/avatar/20181228565256106000.png",
+        "http://twst.isart.me/avatar/20181228519710255652.png",
+        "http://twst.isart.me/avatar/20181228974910259439.png",
+        "http://twst.isart.me/avatar/20181228549748549145.png",
+        "http://twst.isart.me/avatar/20181228505254974767.png",
+        "http://twst.isart.me/avatar/20181228101525258502.png",
+        "http://twst.isart.me/avatar/20181228565255537334.png",
+        "http://twst.isart.me/avatar/20181228515456100863.png",
+        "http://twst.isart.me/avatar/20181228575056998054.png",
+        "http://twst.isart.me/avatar/20181228565210056972.png",
+        "http://twst.isart.me/avatar/20181228504910117936.png",
+        "http://twst.isart.me/avatar/20181228101485759080.png",
+        "http://twst.isart.me/avatar/20181228565498108993.png",
+        "http://twst.isart.me/avatar/20181228514953535234.png",
+        "http://twst.isart.me/avatar/20181228995457972732.png",
+        "http://twst.isart.me/avatar/20181228485310299491.png",
+        "http://twst.isart.me/avatar/20181228545210113454.png",
+        "http://twst.isart.me/avatar/20181228505054532985.png",
+        "http://twst.isart.me/avatar/20181228979952107706.png",
+        "http://twst.isart.me/avatar/20181228102521016973.png",
+        "http://twst.isart.me/avatar/20181228521005057901.png",
+        "http://twst.isart.me/avatar/20181228525410147498.png",
+        "http://twst.isart.me/avatar/20181228504910216417.png",
+        "http://twst.isart.me/avatar/20181228495049490891.png",
+        "http://twst.isart.me/avatar/20181228505350504017.png",
+        "http://twst.isart.me/avatar/20181228102575255922.png",
+        "http://twst.isart.me/avatar/20181228579949547327.png",
+        "http://twst.isart.me/avatar/20181228524910090259.png",
+        "http://twst.isart.me/avatar/20181228489855977351.png",
+        "http://twst.isart.me/avatar/20181228999850562783.png",
+        "http://twst.isart.me/avatar/20181228975299572861.png",
+        "http://twst.isart.me/avatar/20181228985598106437.png",
+        "http://twst.isart.me/avatar/20181228505554102084.png",
+        "http://twst.isart.me/avatar/20181228100505059557.png",
+    ];
 
     /*
      * 判断一个对象是不是空
@@ -397,7 +708,7 @@ class Utils
     }
 
     /*
-     * 获取随机数
+     * 获取随机数-一般用于验证码
      *
      * By TerryQi
      *

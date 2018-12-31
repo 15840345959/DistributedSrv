@@ -61,11 +61,11 @@
                                 ({{$data->game->id}})</span>
                             </div>
                             <div class="mt-5">
-                                参赛金额：<span class="label label-primary">{{$data->game->join_price}}</span>
+                                参赛金额：<span class="label label-danger">{{$data->game->join_price}}</span>
                             </div>
                             <div class="mt-5">
                                 实际缴费：<span
-                                        class="label label-primary">{{isset($data->order)?$data->order->total_fee:'优惠券'}}</span>
+                                        class="label label-primary">{{isset($data->order)?$data->order->total_fee:'0'}}</span>
                             </div>
                             <div class="mt-5">
                                 目标天数：<span class="label label-secondary">{{$data->game->target_join_day}}</span>

@@ -96,6 +96,7 @@ class MryhJoinArticleController
             $xcxForm = new XCXForm();
             $xcxForm->user_id = $article->user_id;
             $xcxForm->busi_name = $article->busi_name;
+            $xcxForm->total_num = 1;
             $xcxForm->form_id = $data['article']['form_id'];
             $xcxForm->f_table = Utils::F_TABLE_MRYH_JOIN;
             $xcxForm->f_id = $mryhJoin->id;
@@ -160,6 +161,12 @@ class MryhJoinArticleController
 
             //发送小程序成功提醒
             MryhSendXCXTplMessageManager::sendJoinResultMessage($mryhJoin->id);
+
+            //2018-12-17增加逻辑，即如果失败，则增加mryh_user_info中的join_notify_num，即参赛提醒消息数
+            $mryhUser = MryhUserManager::getByUserId($mryhJoin->user_id);
+            $mryhUser->join_notify_num = $mryhUser->join_notify_num + 1;        //参赛提醒消息数+1
+            $mryhJoin->save();
+
         }
         return ApiResponse::makeResponse(true, $mryhJoinArticle, ApiResponse::SUCCESS_CODE);
     }
@@ -268,6 +275,9 @@ class MryhJoinArticleController
             'mryhGame' => $mryhGame,
             'other_games' => $other_mryhGames,
         );
+
+        //增加统计信息
+        ArticleManager::addStatistics($article->id, 'show_num', random_int(1, 3));      //随机增加1-3
 
         return ApiResponse::makeResponse(true, $page_data, ApiResponse::SUCCESS_CODE);
 

@@ -17,6 +17,7 @@ use App\Components\LoginManager;
 use App\Components\GZH\ReplyManager;
 use App\Components\Mryh\MryhJoinManager;
 use App\Components\RequestValidator;
+use App\Components\ScoreRecordManager;
 use App\Components\UserManager;
 use App\Components\UserTJManager;
 use App\Components\Utils;
@@ -280,6 +281,16 @@ class WechatController extends Controller
                 VoteActivityManager::addStatistics($vote_order->activity_id, 'vote_num', $vote_order->as_vote_num);       //票数
                 VoteActivityManager::addStatistics($vote_order->activity_id, 'gift_money', $vote_order->total_fee);       //礼物总金额
                 VoteActivityManager::addStatistics($vote_order->activity_id, 'gift_num', $vote_order->gift_num);       //礼物总数
+
+                //增加积分
+                $scoreChange = array(
+                    'user_id' => $vote_order->user_id,
+                    'score' => (int)($vote_order->total_fee * Utils::YXHD_ORDER_MULTI_SCORE_VAL),
+                    'opt' => '1',
+                    'remark' => '投票大赛打赏奖励积分'
+                );
+                ScoreRecordManager::change($scoreChange);
+
             }
             return $wechat->success();
         } catch (Exception $e) {

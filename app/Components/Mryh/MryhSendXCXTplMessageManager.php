@@ -71,8 +71,11 @@ class MryhSendXCXTplMessageManager
         if (!$login) {
             return false;
         }
-
-        $xcxForm->used_flag = '1';      //设置为已使用
+        $xcxForm->used_num = $xcxForm->used_num + 1;
+        //2018-12-18修改逻辑，即如果用户的使用xcxForm数大于总数，则将used_flag设置为1
+        if ($xcxForm->used_num >= $xcxForm->total_num) {
+            $xcxForm->used_flag = '1';      //设置为已使用
+        }
         $xcxForm->save();
 
         //配置信息
@@ -141,7 +144,10 @@ class MryhSendXCXTplMessageManager
             return false;
         }
 
-        $xcxForm->used_flag = '1';      //设置为已使用
+        $xcxForm->used_num = $xcxForm->used_num + 1;
+        if ($xcxForm->used_num >= $xcxForm->total_num) {
+            $xcxForm->used_flag = '1';      //设置为已使用
+        }
         $xcxForm->save();
 
         //配置信息
@@ -209,7 +215,11 @@ class MryhSendXCXTplMessageManager
             return false;
         }
 
-        $xcxForm->used_flag = '1';      //设置为已使用
+        //优化使用数
+        $xcxForm->used_num = $xcxForm->used_num + 1;
+        if ($xcxForm->used_num >= $xcxForm->total_num) {
+            $xcxForm->used_flag = '1';      //设置为已使用
+        }
         $xcxForm->save();
 
         //配置信息
@@ -268,7 +278,11 @@ class MryhSendXCXTplMessageManager
         if (!$login) {
             return false;
         }
-        $xcxForm->used_flag = '1';      //设置为已使用
+
+        $xcxForm->used_num = $xcxForm->used_num + 1;
+        if ($xcxForm->used_num >= $xcxForm->total_num) {
+            $xcxForm->used_flag = '1';      //设置为已使用
+        }
         $xcxForm->save();
 
         //配置信息

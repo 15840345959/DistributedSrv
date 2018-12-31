@@ -78,6 +78,12 @@
                                 <span class="">活动编码：</span><span
                                         class="ml-5 c-primary">{{$data->code}}</span>
                             </div>
+                            <div class="mt-5">
+                                <span class="">活动链接：</span><span
+                                        class="ml-5 c-primary">
+                                    {{env('SYATC_CN_URL')}}yxhd/turnplate/index?activity_id={{$data->id}}
+                                </span>
+                            </div>
                         </td>
                         <td>
                             <div>
@@ -129,7 +135,7 @@
                                 </a>
                             </div>
                             <div class="mt-5">
-                                {!! QrCode::size(100)->generate(env('SYATC_CN_URL') . 'vote/index?activity_id=' . $data->id) !!}
+                                {!! QrCode::size(100)->generate(env('SYATC_CN_URL') . 'yxhd/turnplate/index?activity_id=' . $data->id) !!}
                             </div>
                         </td>
                     </tr>

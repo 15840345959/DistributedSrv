@@ -241,6 +241,9 @@ class VoteActivityManager
         if (array_key_exists('sel_tp_ad_ids', $data)) {
             $info->sel_tp_ad_ids = array_get($data, 'sel_tp_ad_ids');
         }
+        if (array_key_exists('sel_tp_ad_url', $data)) {
+            $info->sel_tp_ad_url = array_get($data, 'sel_tp_ad_url');
+        }
         if (array_key_exists('show_ad_mode', $data)) {
             $info->show_ad_mode = array_get($data, 'show_ad_mode');
         }

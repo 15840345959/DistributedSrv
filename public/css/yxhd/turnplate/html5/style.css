@@ -1,0 +1,128 @@
+﻿body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    color: #333;
+    font-size: 12px;
+    font-family: "Microsoft YaHei"
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+select, input, img, select {
+    vertical-align: middle;
+}
+
+input {
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    color: #c00;
+    text-decoration: none;
+}
+
+.clear {
+    clear: both;
+}
+
+/* 大转盘样式 */
+.banner {
+    display: block;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.banner .turnplate {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+/*.banner .turnplate canvas.item{width:100%;}*/
+/*.banner .turnplate img.pointer{    position: absolute;  width: 35.5%;  height: 42.5%;  left: 32.6%;  top: 25%}*/
+
+/*.banner .turnplate canvas.item {*/
+/*width: 101%;*/
+/*margin-top: 118.5px;*/
+/*}*/
+.item {
+    position: absolute;
+    z-index: 99;
+    margin: auto;
+    top: 106px;
+    width: 365px;
+    height: 366px;
+    left: -1.5px;
+    right: 4px;
+    top: -5px
+}
+
+.pointer {
+    z-index: 101;
+    position: absolute;
+    bottom: 13px;
+    margin: auto;
+    left: 0px;
+    right: 0px;
+    width: 125.5px;
+    height: 125.5px;
+    top: 0px;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#notice_div {
+    width: 100%;
+    height: 108px;
+    /*margin: 100px auto;*/
+    position: relative;
+    overflow: hidden;
+
+}
+
+#notice_div ul {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#notice_div ul li {
+    float: left;
+    width: 250px;
+    height: 108px;
+    list-style: none;
+    margin-left: 10px;
+}
+
+.plan_div {
+    width: 200px;
+    height: 40px;
+    position: relative;
+}
+
+.plane {
+    position: absolute;
+}
+
+.plane_text {
+    position: absolute;
+    right: 30px;
+    top: 8px;
+}

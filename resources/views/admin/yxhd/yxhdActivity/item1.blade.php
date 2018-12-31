@@ -12,7 +12,8 @@
     <table class="table table-border table-bordered table-bg table-sort">
         <thead>
         <tr>
-            <th scope="col" colspan="7">奖品列表</th>
+            <th scope="col" colspan="7" class="c-danger">奖品列表，请注意一个活动配置的奖品最多不超过9个，预留1个奖品位置由“谢谢参与”补齐
+                <span class="r">共有数据：<strong>{{$yxhdPrizeSettings->count()}}</strong> 条</span></th>
         </tr>
         <tr class="text-c">
             {{--<th width="25"><input type="checkbox" name="" value=""></th>--}}

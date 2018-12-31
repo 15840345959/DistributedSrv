@@ -60,6 +60,11 @@ class YxhdOrderManager
         $info->pay_status_str = Utils::COMMON_PAY_STATUS_VAL[$info->pay_status];
         $info->winning_status_str = Utils::YXHD_ORDER_WINNING_STATUS_VAL[$info->winning_status];
 
+        //保留订单号后6位，用于前端展示中奖码
+        $info->trade_no_str = substr($info->trade_no, -6);
+        //日期为保留日期即可
+        $info->created_at_str = DateTool::getYMD($info->created_at);
+
         //带抽奖用户id
         if (strpos($level, '0') !== false) {
             $info->user = UserManager::getById($info->user_id);

@@ -59,6 +59,7 @@ class ArticleController
             $xcxForm->user_id = $article->user_id;
             $xcxForm->busi_name = $article->busi_name;
             $xcxForm->form_id = $data['article']['form_id'];
+            $xcxForm->total_num = 1;
             $xcxForm->f_table = Utils::F_TABLB_ARTICLE;
             $xcxForm->f_id = $article->id;
             $xcxForm->save();

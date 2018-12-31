@@ -22,6 +22,7 @@ use App\Components\Utils;
 use App\Http\Controllers\ApiResponse;
 use App\Models\Mryh\MryhJoin;
 use App\Models\Mryh\MryhJoinOrder;
+use App\Models\XCXForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Yansongda\Pay\Pay;
@@ -159,6 +160,16 @@ class MryhJoinOrderController
                 $mryhJoin->total_fee = $mryhJoinOrder->total_fee;
                 $mryhJoin->join_time = DateTool::getCurrentTime();
                 $mryhJoin->save();
+
+                //生成小程序的推送消息数
+                $xcxForm = new XCXForm();
+                $xcxForm->user_id = $mryhJoinOrder->user_id;
+                $xcxForm->busi_name = Utils::BUSI_NAME_MRYH;
+                $xcxForm->form_id = $mryhJoinOrder->prepay_id;
+                $xcxForm->f_table = Utils::F_TABLE_MRYH_JOIN;
+                $xcxForm->f_id = $mryhJoin->id;
+                $xcxForm->total_num = 3;
+                $xcxForm->save();
 
                 //增加活动数据
                 MryhGameManager::addStatistics($mryhJoinOrder->game_id, 'join_num', 1);

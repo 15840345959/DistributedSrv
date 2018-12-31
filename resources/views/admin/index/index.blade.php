@@ -89,6 +89,17 @@
                 </dd>
             </dl>
             <dl id="menu-article">
+                <dt>小程序消息<i class="Hui-iconfont menu_dropdown-arrow">
+                        &#xe6d5;</i>
+                </dt>
+                <dd>
+                    <ul>
+                        <li><a data-href="{{ URL::asset('/admin/xcxForm/index') }}" data-title="小程序消息"
+                               href="javascript:void(0)">小程序消息</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl id="menu-article">
                 <dt>作品管理<i class="Hui-iconfont menu_dropdown-arrow">
                         &#xe6d5;</i>
                 </dt>
@@ -243,12 +254,12 @@
                 </dd>
             </dl>
             <dl id="menu-operateValue">
-                <dt>每日一画<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+                <dt>每天一画<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
                 </dt>
                 <dd>
                     <ul>
                         <li><a data-href="{{ URL::asset('admin/mryh/mryhOverview/index') }}"
-                               data-title="每日一画业务概览"
+                               data-title="每天一画业务概览"
                                href="javascript:void(0)">业务概览<span
                                         class="label label-danger radius ml-10">!</span></a>
                         </li>
@@ -304,6 +315,10 @@
                         <li><a data-href="{{ URL::asset('admin/mryh/mryhComputePrize/index') }}"
                                data-title="清分明细"
                                href="javascript:void(0)">清分明细</a>
+                        </li>
+                        <li><a data-href="{{ URL::asset('admin/mryh/mryhCertSend/index') }}"
+                               data-title="证书下载"
+                               href="javascript:void(0)">证书下载</a>
                         </li>
                     </ul>
                 </dd>

@@ -402,7 +402,7 @@ class DateTool
     /**
      * 返回指定日期在一段时间间隔时间后的日期
      *
-     * @param string $interval 时间间隔类型，（Y：年、Q：季度、M：月、W：星期、D：日期、H：时、N：分、S：秒）
+     * @param string $interval 时间间隔类型，（Y：年、Q：季度、m：月、W：星期、d：日期、H：时、N：分、S：秒）
      * @param int $value 时间间隔数值，数值为正数获取未来的时间，数值为负数获取过去的时间
      * @param string $dateTime 日期
      * @param string $format 返回的日期转换格式

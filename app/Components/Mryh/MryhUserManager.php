@@ -91,6 +91,9 @@ class MryhUserManager
         if (array_key_exists('level', $data)) {
             $info->level = array_get($data, 'level');
         }
+        if (array_key_exists('join_notify_num', $data)) {
+            $info->join_notify_num = array_get($data, 'join_notify_num');
+        }
         if (array_key_exists('status', $data)) {
             $info->status = array_get($data, 'status');
         }

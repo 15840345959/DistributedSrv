@@ -35,6 +35,19 @@
                               cols="">{{ isset($data->share_desc) ? $data->share_desc : '' }}</textarea>
         </div>
     </div>
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>分享链接：</label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <input id="share_url" name="share_url" type="text" class="input-text"
+                   value="{{ isset($data->share_url) ? $data->share_url : '' }}" placeholder="分享链接">
+        </div>
+    </div>
+    <div class="row cl">
+        <label class="form-label col-xs-4 col-sm-2"></label>
+        <div class="formControls col-xs-8 col-sm-9">
+            <span class="c-danger">如果不输入分享链接，则跳转至当前页面。请注意分享链接必须在服务号域名下，请联系技术组处理！！</span>
+        </div>
+    </div>
     <div class="row cl mt-20">
         <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
             <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存配置

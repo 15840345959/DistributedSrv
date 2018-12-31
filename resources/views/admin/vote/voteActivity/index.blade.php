@@ -98,6 +98,9 @@
             </span>
             <span class="r">共有数据：<strong>{{$datas->total()}}</strong> 条</span>
         </div>
+        <div class="mt-10 mb-10">
+            <span class="ml-5 c-danger">2018年12月21日，大赛关联营销活动，营销活动需要设置为10积分抽奖一次，目前大赛积分规则为投票获得10积分，打赏获得打赏金额*5的积分</span>
+        </div>
 
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-sort">
@@ -258,10 +261,17 @@
                                     综合统计
                                 </a>
                             </div>
+                            <div class="mt-5">
+                                <a title="地推工作明细" href="javascript:;"
+                                   onclick="shareDetail('{{$data->name}}','{{$data->id}}')"
+                                   class="c-primary ml-5" style="text-decoration:none">
+                                    地推工作明细
+                                </a>
+                            </div>
                             @if($data->vote_status == 2)
                                 <div class="mt-5">
                                     <a title="获奖名单" href="javascript:;"
-                                       onclick="exportPrizeStatements('{{$data->id}}')"
+                                       onclick="prizeStatements('{{$data->id}}')"
                                        class="c-primary" style="text-decoration:none">
                                         获奖名单
                                     </a>
@@ -402,9 +412,25 @@
             layer.full(index);
         }
 
-        function exportPrizeStatements(id) {
+        function prizeStatements(id) {
             console.log('id is : ', id)
-            window.location.href = '{{route('voteActivity.prizeStatements')}}?id=' + id + '&_token=' + '{{csrf_token()}}'
+            var index = layer.open({
+                type: 2,
+                title: '获奖名单',
+                content: '{{route('voteActivity.prizeStatements.web')}}?id=' + id + '&_token=' + '{{csrf_token()}}'
+            });
+            layer.full(index);
+            {{--window.location.href = '{{route('voteActivity.prizeStatements')}}?id=' + id + '&_token=' + '{{csrf_token()}}'--}}
+        }
+
+        function shareDetail(name, id) {
+            console.log('id is : ', id)
+            var index = layer.open({
+                type: 2,
+                title: `地推工作明细-${name}`,
+                content: '{{route('voteActivity.share.index')}}?activity_id=' + id
+            });
+            layer.full(index);
         }
 
     </script>

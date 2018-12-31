@@ -207,6 +207,7 @@ class MryhGameController
         $xcxForm->user_id = $data['user_id'];
         $xcxForm->busi_name = Utils::BUSI_NAME_MRYH;
         $xcxForm->form_id = $data['form_id'];
+        $xcxForm->total_num = 1;
         $xcxForm->f_table = Utils::F_TABLE_MRYH_GAME;
         $xcxForm->f_id = $data['game_id'];
         $xcxForm->save();

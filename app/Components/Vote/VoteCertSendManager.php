@@ -47,6 +47,7 @@ class VoteCertSendManager
      */
     public static function getInfoByLevel($info, $level)
     {
+        $info->status_str = Utils::COMMON_STATUS_VAL[$info->status];
 
         $info->vote_user = VoteUserManager::getById($info->vote_user_id);
 

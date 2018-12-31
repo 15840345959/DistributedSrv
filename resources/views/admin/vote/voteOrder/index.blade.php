@@ -49,7 +49,7 @@
             <table class="table table-border table-bordered table-bg table-sort">
                 <thead>
                 <tr>
-                    <th scope="col" colspan="11">打赏明细列表<span
+                    <th scope="col" colspan="12">打赏明细列表<span
                                 class="r">共有数据：<strong>{{$datas->total()}}</strong> 条</span></th>
                 </tr>
                 <tr class="text-c">
@@ -63,6 +63,7 @@
                     <th width="50">数量</th>
                     <th width="50">金额</th>
                     <th width="50">支付状态</th>
+                    <th width="50">下单时间</th>
                     <th width="50">支付时间</th>
                     <th width="50">操作</th>
                 </tr>
@@ -104,14 +105,21 @@
                             <span>{{$data->pay_status_str}}</span>
                         </td>
                         <td>
+                            <span>{{$data->created_at?$data->created_at:'--'}}</span>
+                        </td>
+                        <td>
                             <span>{{$data->pay_at?$data->pay_at:'--'}}</span>
                         </td>
                         <td>
-                            <a style="text-decoration:none" onClick="refund(this,'{{$data->id}}')"
-                               href="javascript:;" class="c-primary"
-                               title="退款">
-                                退款
-                            </a>
+                            @if($data->pay_status=='1')
+                                <a style="text-decoration:none" onClick="refund(this,'{{$data->id}}')"
+                                   href="javascript:;" class="c-primary"
+                                   title="退款">
+                                    退款
+                                </a>
+                            @else
+                                --
+                            @endif
                         </td>
                     </tr>
                 @endforeach

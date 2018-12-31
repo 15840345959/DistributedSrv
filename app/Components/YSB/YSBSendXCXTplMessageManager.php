@@ -64,7 +64,10 @@ class YSBSendXCXTplMessageManager
             return false;
         }
 
-        $xcxForm->used_flag = '1';      //设置为已使用
+        $xcxForm->used_num = $xcxForm->used_num + 1;
+        if ($xcxForm->used_num >= $xcxForm->total_num) {
+            $xcxForm->used_flag = '1';      //设置为已使用
+        }
         $xcxForm->save();
 
         //配置信息

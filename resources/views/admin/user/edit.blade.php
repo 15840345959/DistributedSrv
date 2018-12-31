@@ -34,6 +34,13 @@
                 </div>
             </div>
             <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>积分：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input id="score" name="score" type="int" class="input-text"
+                           value="{{ isset($data->score) ? $data->score : '0' }}" placeholder="请输入积分...">
+                </div>
+            </div>
+            <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>头像：</label>
                 <div class="formControls col-xs-8 col-sm-9">
                     <input id="avatar" name="avatar" type="text" class="input-text" style=""
@@ -41,7 +48,7 @@
                            placeholder="请输入选择图片">
                     <div id="container" class="margin-top-10">
                         <img id="pickfiles"
-                             src="{{ isset($data->avatar) ? $data->avatar : URL::asset('/img/upload.png') }}"
+                             src="{{ isset($data->avatar) ? $data->avatar : URL::asset('/img/upload_rect.png') }}"
                              style="width: 150px;">
                     </div>
                     <div style="font-size: 12px;margin-top: 10px;" class="text-gray">
@@ -51,7 +58,7 @@
             </div>
             <div class="row cl mt-20">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                    <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存广告
+                    <button class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存用户
                     </button>
                 </div>
             </div>

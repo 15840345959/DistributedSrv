@@ -14,11 +14,14 @@ use App\Components\DateTool;
 use App\Components\QNManager;
 use App\Components\RequestValidator;
 use App\Components\RuleManager;
+use App\Components\SMSManager;
 use App\Components\Utils;
 use App\Components\Mryh\MryhGameManager;
 
+use App\Components\VertifyManager;
 use App\Http\Controllers\ApiResponse;
 use App\Models\Mryh\MryhGame;
+use App\Models\Vertify;
 use Illuminate\Http\Request;
 
 
@@ -254,6 +257,89 @@ class MryhGameController
         $new_game->save();
 
         return ApiResponse::makeResponse(true, $new_game, ApiResponse::SUCCESS_CODE);
+    }
+
+    /*
+     * 编辑每天一画预设奖金
+     *
+     * By TerryQi
+     *
+     * 2018-12-18
+     */
+    public function editAdvPrice(Request $request)
+    {
+        $data = $request->all();
+        //        dd($data);
+        $admin = $request->session()->get('admin');
+        //合规校验
+        $requestValidationResult = RequestValidator::validator($request->all(), [
+            'id' => 'required',
+        ]);
+        if ($requestValidationResult !== true) {
+            return redirect()->action('\App\Http\Controllers\Admin\IndexController@error', ['msg' => '合规校验失败，请检查参数' . $requestValidationResult]);
+        }
+        $mryhGame = MryhGameManager::getById($data['id']);
+
+        //发送验证码
+        $code = Utils::getRandNum(4);
+
+        $vertifyInfo = new Vertify();
+        $vertifyInfo->code = $code;
+        $vertifyInfo->phonenum = Utils::SUPER_ADMIN_PHONENUM;
+        $vertifyInfo->save();
+        //发送验证码
+        SMSManager::sendSMS(Utils::SUPER_ADMIN_PHONENUM, Utils::SUPER_ADMIN_PHONENUM, $code . ',5分钟');
+
+        return view('admin.mryh.mryhGame.editAdvPrice', ['admin' => $admin, 'data' => $mryhGame]);
+    }
+
+
+    /*
+     * 修改每天一画预设奖金
+     *
+     * By TerryQi
+     *
+     * 2018-12-18
+     */
+    public function editAdvPricePost(Request $request)
+    {
+        $data = $request->all();
+        //        dd($data);
+        $admin = $request->session()->get('admin');
+        //合规校验
+        $requestValidationResult = RequestValidator::validator($request->all(), [
+            'id' => 'required',
+            'code' => 'required',
+            'adv_price' => 'required'
+        ]);
+        if ($requestValidationResult !== true) {
+            return ApiResponse::makeResponse(false, $requestValidationResult, ApiResponse::MISSING_PARAM);
+        }
+        //校验code的完整性
+        $con_arr = array(
+            'phonenum' => Utils::SUPER_ADMIN_PHONENUM,
+            'code' => $data['code'],
+            'status' => '0'
+        );
+        $vertifyInfo = VertifyManager::getListByCon($con_arr, false)->first();
+        if (!$vertifyInfo) {
+            return ApiResponse::makeResponse(false, "校验码不正确", ApiResponse::INNER_ERROR);
+        }
+        $vertifyInfo->status = '1';
+        $vertifyInfo->save();
+
+        //每天一画活动
+        $mryhGame = MryhGameManager::getById($data['id']);
+        $mryhGame->adv_price = $data['adv_price'];
+        $mryhGame->save();
+
+        /////////////////////////////////////////////////////////
+        ///
+        //2018-12-18 此处有一个逻辑待补充，即要保存至t_opt_record中
+        //
+        //////////////////////////////////////////////////////////
+
+        return ApiResponse::makeResponse(true, "修改预设奖金成功", ApiResponse::SUCCESS_CODE);
     }
 
 }

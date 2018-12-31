@@ -38,7 +38,7 @@
     <div class="row cl">
         <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>礼物总金额：</label>
         <div class="formControls col-xs-8 col-sm-9">
-            <input id="gift_money" name="gift_money" type="number" class="input-text" disabled
+            <input id="gift_money" name="gift_money" type="number" class="input-text"
                    value="{{ isset($data->gift_money) ? $data->gift_money : '0' }}" placeholder="请输入礼物总金额">
         </div>
     </div>
