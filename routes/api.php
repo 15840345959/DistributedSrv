@@ -261,7 +261,7 @@ Route::group(['prefix' => 'yxhd', 'middleware' => ['BeforeRequest', 'cors']], fu
     Route::get('page/index', 'API\Yxhd\YxhdPageController@index');     //大转盘首页信息
 
     //获取首页轮播图
-    Route::post('activity/draw', 'API\Yxhd\YxhdOrderController@draw')->middleware('user.checkToken');
+    Route::any('/draw', 'Yxhd\Turnplate\Html5\APIController@draw')->middleware('user.checkToken');
 });
 
 
