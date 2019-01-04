@@ -26,8 +26,16 @@ class UserManager
      */
     public static function getByIdWithToken($id)
     {
-        $user = User::where('id', '=', $id)->first();
-        return $user;
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, 7);
+
+        if (\Redis::exisits("$class:$id")) {
+            return json_decode(\Redis::get("$class:$id"));
+        }
+
+        $info = User::where('id', '=', $id)->first();
+        \Redis::set("$class:$id", $info);
+        
+        return $info;
     }
 
     /*
@@ -39,7 +47,7 @@ class UserManager
      */
     public static function getById($id)
     {
-        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1]);
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, 7);
 
         if (\Redis::exisits("$class:$id")) {
             return json_decode(\Redis::get("$class:$id"));
