@@ -11,6 +11,7 @@ namespace App\Components;
 
 use App\Components\Utils;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Cache;
 use Qiniu\Auth;
 
 class AdminManager
@@ -25,9 +26,16 @@ class AdminManager
      */
     public static function getById($id)
     {
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1],0, -7);
+
+        if (Cache::get("$class:$id")) {
+            $info = Cache::get("$class:$id");
+            return $info;
+        }
+
         $info = Admin::where('id', '=', $id)->first();
         unset($info->password);
-        return $info;
+        Cache::put("$class:$id", $info, 60*24*7);
     }
 
     /*
