@@ -28,6 +28,7 @@ use App\Components\Vote\VoteShareRecordManager;
 use App\Components\Vote\VoteUserManager;
 use App\Components\Yxhd\YxhdActivityManager;
 use App\Components\Yxhd\YxhdOrderManager;
+use App\Components\Yxhd\YxhdPrizeManager;
 use App\Libs\CommonUtils;
 use App\Models\Vote\VoteActivity;
 use App\Models\Vote\VoteComplain;
@@ -64,7 +65,13 @@ class APIController
 
     public function test (Request $request) {
         $data = $request->all();
-        $user = UserManager::getById($data['user_id']);
+        for ($i = 0; $i < 20; $i++) {
+            $user = UserManager::getById($data['user_id']);
+            $activity = YxhdActivityManager::getById(1);
+            $prize = YxhdPrizeManager::getById(1);
+            $order = YxhdOrderManager::getById(1);
+        }
+
         return ApiResponse::makeResponse(true, '', ApiResponse::SUCCESS_CODE);
     }
 
