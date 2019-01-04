@@ -8,24 +8,9 @@
 
 namespace App\Components\Yxhd;
 
-use App\Components\DateTool;
-use App\Components\LoginManager;
-use App\Components\SMSManager;
-use App\Components\Yxhd\YxhdADManager;
 use App\Models\Yxhd\YxhdActivity;
-use Carbon\Carbon;
-use function Couchbase\defaultDecoder;
-use EasyWeChat\Kernel\Messages\Image;
-use EasyWeChat\Kernel\Messages\News;
-use EasyWeChat\Kernel\Messages\NewsItem;
-use EasyWeChat\Kernel\Messages\Text;
-use EasyWeChat\Kernel\Messages\Video;
-use EasyWeChat\Kernel\Messages\Voice;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use App\Components\AdminManager;
 use App\Components\Utils;
-use Illuminate\Support\Facades\URL;
 
 class YxhdActivityManager
 {
@@ -38,8 +23,18 @@ class YxhdActivityManager
      */
     public static function getById($id)
     {
-        $info = YxhdActivity::where('id', '=', $id)->first();
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1]);
+
+        if (\Redis::exisits("$class:$id")) {
+            return json_decode(\Redis::get("$class:$id"));
+        }
+
+        $info = YxhdActivity::where('id', $id)->first();
+        \Redis::set("$class:$id", $info);
+
         return $info;
+//        $info = YxhdActivity::where('id', '=', $id)->first();
+//        return $info;
     }
 
     /*

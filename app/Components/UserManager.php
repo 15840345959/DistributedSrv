@@ -12,8 +12,6 @@ namespace App\Components;
 use App\Models\GuanZhu;
 use App\Models\Login;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use Leto\MiniProgramAES\WXBizDataCrypt;
 
 
 class UserManager
@@ -41,11 +39,22 @@ class UserManager
      */
     public static function getById($id)
     {
-        $user = self::getByIdWithToken($id);
-        if ($user) {
-            $user->token = null;
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1]);
+
+        if (\Redis::exisits("$class:$id")) {
+            return json_decode(\Redis::get("$class:$id"));
         }
-        return $user;
+
+        $info = self::getByIdWithToken($id);
+        \Redis::set("$class:$id", $info);
+
+        if ($info) {
+            $info->token = null;
+        }
+
+
+
+        return $info;
     }
 
     /*
