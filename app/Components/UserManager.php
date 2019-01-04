@@ -12,7 +12,7 @@ namespace App\Components;
 use App\Models\GuanZhu;
 use App\Models\Login;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Log;
 
 class UserManager
 {
@@ -29,6 +29,7 @@ class UserManager
         $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, 7);
 
         if (\Redis::exists("$class:$id")) {
+            Log::info(\Redis::get("$class:$id"));
             return json_decode(\Redis::get("$class:$id"));
         }
 
