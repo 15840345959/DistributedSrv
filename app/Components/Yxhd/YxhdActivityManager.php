@@ -32,7 +32,7 @@ class YxhdActivityManager
         }
 
         $info = YxhdActivity::where('id', $id)->first();
-        Cache::put("$class:$id", $info, 60*24*7);
+        Cache::add("$class:$id", $info, 60*24*7);
 
         return $info;
     }

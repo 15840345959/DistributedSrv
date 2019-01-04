@@ -22,6 +22,7 @@ use EasyWeChat\Kernel\Messages\NewsItem;
 use EasyWeChat\Kernel\Messages\Text;
 use EasyWeChat\Kernel\Messages\Video;
 use EasyWeChat\Kernel\Messages\Voice;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Components\AdminManager;
@@ -39,7 +40,16 @@ class YxhdOrderManager
      */
     public static function getById($id)
     {
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1],0, -7);
+
+        if (Cache::get("$class:$id")) {
+            $info = Cache::get("$class:$id");
+            return $info;
+        }
+
         $info = YxhdOrder::where('id', '=', $id)->first();
+        Cache::put("$class:$id", $info, 60*24*7);
+
         return $info;
     }
 

@@ -36,6 +36,8 @@ class AdminManager
         $info = Admin::where('id', '=', $id)->first();
         unset($info->password);
         Cache::put("$class:$id", $info, 60*24*7);
+
+        return $info;
     }
 
     /*
