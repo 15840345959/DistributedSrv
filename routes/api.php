@@ -262,6 +262,7 @@ Route::group(['prefix' => 'yxhd', 'middleware' => ['BeforeRequest', 'cors']], fu
 
     //获取首页轮播图
     Route::any('/draw', 'Yxhd\Turnplate\Html5\APIController@draw')->middleware('user.checkToken');
+    Route::any('/test', 'Yxhd\Turnplate\Html5\APIController@test')->middleware('user.checkToken');
 });
 
 

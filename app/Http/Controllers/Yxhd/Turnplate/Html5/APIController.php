@@ -61,6 +61,13 @@ class APIController
      *
      * @抽奖成功返回奖品信息，需要进行比对
      */
+
+    public function test (Request $request) {
+        $data = $request->all();
+        $user = UserManager::getById($data['user_id']);
+        return ApiResponse::makeResponse(true, '', ApiResponse::SUCCESS_CODE);
+    }
+
     public function draw(Request $request)
     {
         $data = $request->all();
