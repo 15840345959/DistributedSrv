@@ -25,7 +25,7 @@ class YxhdActivityManager
     {
         $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, 7);
 
-        if (\Redis::exisits("$class:$id")) {
+        if (\Redis::exists("$class:$id")) {
             return json_decode(\Redis::get("$class:$id"));
         }
 
