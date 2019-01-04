@@ -12,6 +12,7 @@ namespace App\Components;
 use App\Models\GuanZhu;
 use App\Models\Login;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class UserManager
@@ -26,15 +27,15 @@ class UserManager
      */
     public static function getByIdWithToken($id)
     {
-        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, 7);
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1],0, -7);
 
-        if (\Redis::exists("$class:$id")) {
-            Log::info(json_encode(\Redis::get("$class:$id")));
-            return json_decode(\Redis::get("$class:$id"));
+        if (Cache::get("$class:$id")) {
+            $info = Cache::get("$class:$id");
+            return $info;
         }
 
         $info = User::where('id', '=', $id)->first();
-        \Redis::set("$class:$id", $info);
+        Cache::put("$class:$id", $info, 60*24*7);
 
         return $info;
     }
@@ -48,20 +49,11 @@ class UserManager
      */
     public static function getById($id)
     {
-        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, 7);
-
-        if (\Redis::exists("$class:$id")) {
-            return json_decode(\Redis::get("$class:$id"));
-        }
-
         $info = self::getByIdWithToken($id);
-        \Redis::set("$class:$id", $info);
 
         if ($info) {
             $info->token = null;
         }
-
-
 
         return $info;
     }
