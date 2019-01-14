@@ -34,6 +34,11 @@ class CheckToken
         if (!$result) {
             return ApiResponse::makeResponse(false, ApiResponse::$returnMessage[ApiResponse::TOKEN_ERROR], ApiResponse::TOKEN_ERROR);
         }
+
+        if ($result->status != 1) {
+            return ApiResponse::makeResponse(false, ApiResponse::$returnMessage[ApiResponse::USER_DISABLE], ApiResponse::USER_DISABLE);
+        }
+
         return $next($request);
     }
 
