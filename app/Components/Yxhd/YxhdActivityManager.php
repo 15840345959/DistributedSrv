@@ -27,7 +27,7 @@ class YxhdActivityManager
         $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1],0, -7);
 
         if (Cache::get("$class:$id")) {
-            Utils::processLog(__METHOD__, '', '命中缓存');
+//            Utils::processLog(__METHOD__, '', '命中缓存');
             $info = Cache::get("$class:$id");
             return $info;
         }
