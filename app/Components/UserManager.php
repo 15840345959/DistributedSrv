@@ -27,7 +27,7 @@ class UserManager
      */
     public static function getByIdWithToken($id)
     {
-        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1],0, -7);
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, -7);
 
         if (Cache::get("$class:$id")) {
 //            Utils::processLog(__METHOD__, '', '命中缓存');
@@ -36,7 +36,7 @@ class UserManager
         }
 
         $info = User::where('id', '=', $id)->first();
-        Cache::put("$class:$id", $info, 60*24*7);
+        Cache::put("$class:$id", $info, 60 * 24 * 7);
 
         return $info;
     }
@@ -149,7 +149,8 @@ class UserManager
      */
     public static function ckeckToken($id, $token)
     {
-        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1],0, -7);
+        $class = substr(explode('\\', __CLASS__)[count(explode('\\', __CLASS__)) - 1], 0, -7);
+        Utils::processLog(__METHOD__, '', "ckeckToken class：" . json_encode($class) . " id:" . $id);
 
         if (Cache::get("$class:$id")) {
 //            Utils::processLog(__METHOD__, '', '命中缓存');
@@ -165,12 +166,11 @@ class UserManager
         $info = User::where('id', $id)->where('token', $token)->first();
 
         if ($info) {
-            Cache::put("$class:$id", $info, 60*24*7);
+            Cache::put("$class:$id", $info, 60 * 24 * 7);
             return true;
         } else {
             return false;
         }
-
 
 
 //        //根据id、token获取用户信息
